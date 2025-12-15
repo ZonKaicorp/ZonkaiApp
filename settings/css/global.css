@@ -1,0 +1,464 @@
+/* global.css */
+/* Este arquivo contém todos os estilos compartilhados: 
+   Variáveis, Temas, Top-Bar, Bottom-Bar, Sidebar, Modais, Fundo, etc. */
+
+/* ====== 1. Configurações Globais e Fontes ====== */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+:root {
+    /* Fontes (Estilo Apple) */
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    
+    /* Curva de Animação Fluida (Estilo One UI / Material You) */
+    --fluid-bezier: cubic-bezier(0.2, 0.8, 0.2, 1); /* Curva 'ease-out' suave */
+    --transition-speed: 0.3s;
+    
+    /* Raios de Borda (Estilo Android 16) */
+    --radius-small: 8px;
+    --radius-medium: 16px;
+    --radius-large: 28px;
+    --radius-full: 50%;
+    
+    /* Z-index */
+    --z-background: -1;
+    --z-base: 1;
+    --z-content: 10;
+    --z-bars: 100;
+    --z-sidebar: 150;
+    --z-overlay: 200;
+    --z-modal: 210;
+}
+
+/* ====== 2. Temas (Dark e Light) ====== */
+
+/* 2.1 Tema Escuro (Default) */
+[data-theme="dark"] {
+    --bg-color: #0d1b2a; /* Azul Marinho Escuro */
+    --surface-color: #1b263b; /* Superfície pouco mais clara */
+    --glass-bg: rgba(27, 38, 59, 0.65); /* Fundo do "vidro" */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #f0f4f8;
+    --text-secondary: #a9b4c2;
+    --highlight-color: #5699ff; /* Azul mais brilhante para destaques */
+    --bloom-color: rgba(86, 153, 255, 0.4);
+    --icon-color: #e0e1dd;
+    --ripple-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 2.2 Tema Claro */
+[data-theme="light"] {
+    --bg-color: #f0f4f8; /* Fundo claro */
+    --surface-color: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --text-primary: #0d1b2a;
+    --text-secondary: #415a77;
+    --highlight-color: #0056b3; /* Azul escuro para destaque */
+    --bloom-color: rgba(0, 86, 179, 0.3);
+    --icon-color: #415a77;
+    --ripple-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ====== 3. Reset e Corpo ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    /* Força a cor de fundo do tema escuro imediatamente */
+    background-color: #0d1b2a;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-top: 65px; 
+    padding-bottom: 95px;
+    min-height: 100vh;
+}
+
+/* ====== 4. Animação de Fundo ====== */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-background);
+    overflow: hidden;
+}
+
+.background-animation::before {
+    content: '';
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 20% 20%, var(--highlight-color), transparent 40%),
+                radial-gradient(circle at 80% 70%, var(--bloom-color), transparent 50%);
+    opacity: 0.2;
+    animation: gradient-flow 25s ease-in-out infinite;
+    transform: scale(1.5);
+}
+
+@keyframes gradient-flow {
+    0% { transform: translate(0, 0) scale(1.5); }
+    50% { transform: translate(-10%, 10%) scale(1.8); }
+    100% { transform: translate(0, 0) scale(1.5); }
+}
+
+/* ====== 5. Efeito de Vidro ====== */
+.glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid var(--glass-border);
+    transition: background var(--transition-speed) ease, border var(--transition-speed) ease;
+}
+
+/* ====== 6. Barras (Top e Bottom) ====== */
+.top-bar,
+.bottom-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 65px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    z-index: var(--z-bars);
+}
+
+/* 6.1 Top Bar */
+.top-bar {
+    top: 0;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    animation: pulse-color 4s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-color {
+    0% { color: var(--text-primary); text-shadow: 0 0 5px rgba(255,255,255,0); }
+    100% { color: var(--highlight-color); text-shadow: 0 0 10px var(--bloom-color); }
+}
+
+.top-bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-medium);
+    background: var(--surface-color);
+    border: 1px solid var(--glass-border);
+}
+
+.profile-btn .material-symbols-outlined { font-size: 24px; }
+
+/* 6.2 Bottom Bar (Flutuante) */
+.bottom-bar {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: 500px;
+    height: 65px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: var(--z-bars);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-large);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 4px 0;
+    transition: color var(--transition-speed) ease, transform 0.1s ease;
+    min-width: 60px;
+}
+.bottom-nav-item:hover { color: var(--text-primary); }
+.bottom-nav-item:active { transform: scale(0.95); }
+.bottom-nav-item .material-symbols-outlined { font-size: 26px; flex-shrink: 0; }
+.bottom-nav-item .nav-label { font-size: 0.7rem; margin-top: 2px; white-space: nowrap; }
+
+.home-btn {
+    width: 56px;
+    height: 56px;
+    background: var(--highlight-color);
+    color: var(--bg-color) !important;
+    border-radius: var(--radius-full);
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-15px);
+    box-shadow: 0 -4px 15px var(--bloom-color);
+    border: 3px solid var(--bg-color);
+    transition: transform 0.2s var(--fluid-bezier), box-shadow 0.2s ease;
+    flex-shrink: 0;
+    min-width: 56px;
+}
+.home-btn:hover { transform: translateY(-18px) scale(1.05); }
+.home-btn:active { transform: translateY(-15px) scale(0.95); box-shadow: 0 -2px 10px var(--bloom-color); }
+.home-btn .material-symbols-outlined { font-size: 30px; display: block; line-height: 1; width: 1em; height: 1em; object-fit: contain; }
+.home-btn .nav-label { display: none; }
+
+/* ====== 7. Sidebar (Menu Lateral) ====== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    padding: 20px;
+    padding-top: 80px; 
+    z-index: var(--z-sidebar);
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-right: 1px solid var(--glass-border);
+    transform: translateX(-100%);
+    transition: transform 0.4s var(--fluid-bezier);
+}
+.sidebar.active { transform: translateX(0); }
+.sidebar-header { padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px solid var(--glass-border); }
+.sidebar-menu { list-style: none; }
+.sidebar-menu li { opacity: 0; transform: translateX(-15px); transition: opacity 0.3s var(--fluid-bezier), transform 0.3s var(--fluid-bezier); }
+.sidebar-menu li a { display: flex; align-items: center; gap: 16px; padding: 14px 10px; text-decoration: none; color: var(--text-primary); font-weight: 500; border-radius: var(--radius-medium); transition: background 0.2s var(--fluid-bezier), color 0.2s ease; }
+.sidebar-menu li a .material-symbols-outlined { color: var(--text-secondary); transition: color 0.2s ease; flex-shrink: 0; }
+.sidebar-menu li a:hover { background: var(--ripple-color); color: var(--highlight-color); }
+.sidebar-menu li a:hover .material-symbols-outlined { color: var(--highlight-color); }
+.sidebar.active .sidebar-menu li { opacity: 1; transform: translateX(0); }
+.sidebar.active .sidebar-menu li:nth-child(1) { transition-delay: 0.05s; }
+.sidebar.active .sidebar-menu li:nth-child(2) { transition-delay: 0.1s; }
+.sidebar.active .sidebar-menu li:nth-child(3) { transition-delay: 0.15s; }
+.sidebar.active .sidebar-menu li:nth-child(4) { transition-delay: 0.2s; }
+.sidebar.active .sidebar-menu li:nth-child(5) { transition-delay: 0.25s; }
+
+/* ====== 8. Conteúdo Principal (Genérico) ====== */
+.content {
+    padding: 20px;
+    z-index: var(--z-content);
+}
+
+/* ====== 9. Botões e Overlay ====== */
+.icon-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--icon-color);
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+.icon-btn:hover { background: var(--ripple-color); }
+.icon-btn:active { transform: scale(0.9); background: var(--ripple-color); }
+.icon-btn .material-symbols-outlined { font-size: 24px; flex-shrink: 0; }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: var(--z-overlay);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s var(--fluid-bezier);
+}
+.overlay.active { opacity: 1; pointer-events: auto; }
+
+/* ====== 10. Modais (Base) ====== */
+.modal {
+    position: fixed;
+    z-index: var(--z-modal);
+    border-radius: var(--radius-large);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px) scale(0.98); 
+    transition: opacity 0.3s var(--fluid-bezier), transform 0.3s var(--fluid-bezier);
+}
+.modal.active { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
+.modal-content { padding: 24px; }
+
+/* 10.1 Modal de Perfil (Atualizado) */
+.profile-modal {
+    top: 75px; 
+    right: 16px;
+    width: 240px; /* Um pouco mais largo */
+    transform-origin: top right; 
+    transform: translateY(0) scale(0.95);
+}
+.profile-modal.active { transform: translateY(0) scale(1); }
+.profile-modal .modal-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo */
+}
+/* Novo Círculo da Foto */
+.profile-modal-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full);
+    background: var(--surface-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    border: 2px solid var(--highlight-color);
+}
+.profile-modal-pic .material-symbols-outlined {
+    font-size: 36px;
+    color: var(--text-secondary);
+}
+.profile-modal strong {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-align: center;
+}
+.profile-modal a {
+    padding: 10px 12px;
+    text-decoration: none;
+    color: var(--text-primary);
+    border-radius: var(--radius-small);
+    transition: background 0.2s ease;
+    width: 100%; /* Links ocupam largura total */
+    text-align: center;
+}
+.profile-modal a:hover { background: var(--ripple-color); }
+
+/* 10.2 Modais de Login/Cadastro */
+.login-modal,
+.register-modal {
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-width: 400px;
+    transform: translate(-50%, -50%) scale(0.95);
+}
+.login-modal.active,
+.register-modal.active { transform: translate(-50%, -50%) scale(1); }
+.modal h3 { text-align: center; margin-bottom: 20px; font-weight: 600; }
+
+/* 10.3 Formulários (Base) */
+.form-group {
+    margin-bottom: 16px;
+}
+.form-group label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    display: block;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group select { /* Adicionado select */
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--surface-color);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-medium);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    -webkit-appearance: none; /* Remove estilo padrão do select */
+    -moz-appearance: none;
+    appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 0 3px var(--bloom-color);
+}
+/* Estilo para Select Box */
+.form-group.select-group {
+    position: relative;
+}
+.form-group.select-group::after { /* Seta customizada */
+    content: 'expand_more';
+    font-family: 'Material Symbols Outlined';
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--text-secondary);
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: var(--radius-medium);
+    background: var(--highlight-color);
+    color: var(--bg-color);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s var(--fluid-bezier), box-shadow 0.2s ease;
+}
+.btn-primary:hover { transform: scale(1.02); box-shadow: 0 5px 15px var(--bloom-color); }
+.btn-primary:active { transform: scale(0.98); }
+
+.form-link {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+.form-link a { color: var(--highlight-color); text-decoration: none; font-weight: 500; }
+
+/* 10.4 Estilos de Validação */
+.form-group input.invalid {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
+}
+.validation-message {
+    font-size: 0.8rem;
+    color: #ff6b6b;
+    margin-top: 4px;
+    display: none;
+}

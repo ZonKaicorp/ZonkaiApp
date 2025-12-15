@@ -1,0 +1,182 @@
+/* ========================================
+   GLOBAL
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0d1b2a 0%, #1a2a44 100%);
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ========================================
+   CONTAINER PRINCIPAL
+   ======================================== */
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+/* ========================================
+   CAIXA DE LOGIN
+   ======================================== */
+.login-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 24px;
+  padding: 40px 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo */
+.logo h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #3b82f6;
+  margin-bottom: 8px;
+}
+
+/* Títulos */
+.login-box h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 20px 0 8px;
+}
+
+.login-box p {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 28px;
+}
+
+/* Abas */
+.tab-switch {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 4px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px;
+  background: transparent;
+  border: none;
+  color: #9bbef9;
+  font: 500 15px 'Inter';
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.tab-btn.active {
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+/* Formulário */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13.5px;
+  color: #ccc;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 14px;
+  color: #fff;
+  font: 15px 'Inter';
+  transition: all 0.3s;
+  backdrop-filter: blur(8px);
+}
+
+.form-group input::placeholder {
+  color: #777;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Botão */
+.btn-primary {
+  width: 100%;
+  padding: 15px;
+  background: #3b82f6;
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font: 600 16px 'Inter';
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 10px;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.btn-primary:hover {
+  background: #2563eb;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(59, 130, 246, 0.5);
+}
+
+/* Link de troca */
+.switch-text {
+  margin-top: 24px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.switch-text a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.switch-text a:hover {
+  text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 15px;
+  }
+  .login-box {
+    padding: 32px 24px;
+  }
+}

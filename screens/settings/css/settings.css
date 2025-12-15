@@ -1,0 +1,473 @@
+/* Container que ocupa o espaço do main-content */
+.settings-container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    height: 100%; 
+    min-height: 80vh;
+    color: var(--text-primary);
+    position: relative;
+    padding: 20px 0; /* Padding superior/inferior para melhor visual */
+}
+
+/* Sidebar (Menu Lateral) - Mantido, mas com padding e box-shadow aprimorados */
+.settings-sidebar {
+    width: 260px;
+    background: var(--surface-color);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    flex-shrink: 0; 
+    height: fit-content;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.settings-header h3 {
+    padding: 0 20px 15px;
+    border-bottom: 1px solid var(--glass-border);
+    color: var(--highlight-color);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.settings-menu {
+    list-style: none;
+    margin-top: 10px;
+    padding: 0 10px;
+}
+
+.settings-menu li {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.settings-menu li:hover {
+    background: var(--ripple-color);
+}
+
+.settings-menu li.active {
+    background: var(--highlight-color);
+    color: var(--btn-primary-color, white); 
+    box-shadow: 0 2px 8px var(--bloom-color);
+}
+
+.settings-menu li.active .material-symbols-outlined,
+.settings-menu li.active span {
+    color: inherit; 
+}
+
+.settings-menu span:last-child {
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+/* Conteúdo Principal */
+.settings-content {
+    flex-grow: 1;
+    padding-bottom: 40px; 
+}
+
+.settings-section {
+    display: none; /* Esconde todas por padrão */
+    margin-bottom: 40px; 
+    padding: 25px 30px;
+    background: var(--surface-color);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: fadeIn 0.4s var(--anim-bezier-ease-out);
+}
+
+.settings-section.active {
+    display: block; /* Mostra a seção ativa */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    color: var(--highlight-color);
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+}
+
+.section-desc {
+    margin-top: 5px;
+    margin-bottom: 25px; 
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* NOVO: AGRUPAMENTO DE CONFIGURAÇÕES (para melhor visual) */
+.settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaço entre os toggles/itens */
+    margin-top: 15px;
+    padding: 15px; 
+    border-radius: var(--radius-sm);
+    background: var(--surface-color-secondary, transparent); 
+}
+
+/* NOVO: Layout de Formulário */
+.settings-form {
+    max-width: 800px;
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* CORREÇÃO E MELHORIA DE TOGGLE (form-group-toggle) */
+.form-group-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--glass-border);
+    transition: background 0.2s ease;
+    background: var(--surface-color); /* Fundo claro para o item */
+}
+
+.form-group-toggle:hover {
+    background: var(--ripple-color); 
+}
+
+.toggle-info {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.form-group-toggle label:first-child { 
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+    display: block;
+}
+
+.form-group-toggle p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Estilos para o Switch/Toggle Button */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--text-secondary); /* Cor OFF */
+    transition: var(--transition-speed);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--btn-primary-color);
+    transition: var(--transition-speed);
+}
+
+input:checked + .slider {
+    background-color: var(--highlight-color); /* Cor ON */
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--highlight-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+/* FIM DOS ESTILOS DO SWITCH */
+
+/* NOVO: Estilos para o Seletor de Temas (Appearance) */
+.theme-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.theme-selector {
+    flex-grow: 1;
+}
+
+.theme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.theme-option {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    text-align: center;
+    background: var(--surface-color-secondary, var(--surface-color));
+}
+
+.theme-option:hover {
+    border-color: var(--highlight-color-light);
+}
+
+.theme-option.selected {
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 0 3px var(--bloom-color);
+    background: var(--surface-color);
+}
+
+.theme-preview {
+    width: 100%;
+    height: 70px;
+    border-radius: var(--radius-sm);
+    border: 3px solid; 
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.preview-surface { width: 40%; height: 100%; }
+.preview-highlight { width: 60%; height: 100%; }
+
+.theme-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.theme-preview-card {
+    width: 300px; 
+    flex-shrink: 0;
+    position: sticky;
+    top: 20px; /* Fixa o preview */
+}
+
+/* Preview Card de Demonstração */
+.preview-card {
+    background: var(--bg-color); 
+    border-radius: var(--radius-md);
+    height: 250px;
+    padding: 10px;
+    display: flex;
+    overflow: hidden;
+    margin-top: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+.preview-sidebar {
+    width: 60px;
+    background: var(--surface-color-secondary);
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.preview-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-header {
+    height: 25px;
+    background: var(--highlight-color);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+}
+
+.preview-content {
+    display: flex;
+    gap: 10px;
+}
+
+.preview-box {
+    background: var(--surface-color);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    flex-grow: 1;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+}
+
+.preview-box.short { 
+    width: 60px;
+    flex-grow: 0;
+}
+
+/* Estilos de Formulário */
+.input-field {
+    background: var(--surface-color-secondary, var(--bg-color));
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 5px;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: vertical;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 0 2px var(--bloom-color);
+}
+
+.separator {
+    border: none;
+    height: 1px;
+    background: var(--glass-border);
+}
+
+/* Seção Sobre */
+.about-hero {
+    text-align: center;
+    padding: 20px 0 30px;
+    border-bottom: 1px solid var(--glass-border);
+    margin-bottom: 20px;
+}
+.about-hero h1 {
+    font-size: 3rem;
+    margin: 0;
+    color: var(--highlight-color);
+}
+.about-hero p {
+    color: var(--text-secondary);
+    margin: 5px 0 10px;
+}
+.version-tag {
+    display: inline-block;
+    background: var(--surface-color-secondary);
+    color: var(--text-secondary);
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.about-links {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+.about-links a {
+    color: var(--highlight-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.about-footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .settings-container {
+        flex-direction: column;
+    }
+    .settings-sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px;
+        height: auto;
+    }
+    .settings-header { display: none; }
+    .settings-menu {
+        display: flex;
+        padding: 0;
+        margin: 0;
+    }
+    .settings-menu li {
+        flex-shrink: 0;
+        margin: 0 5px;
+    }
+    .settings-menu li span:last-child {
+        display: none; /* Esconde o nome no menu mobile */
+    }
+    .settings-content {
+        padding: 0;
+    }
+    .theme-layout {
+        flex-direction: column;
+    }
+    .theme-preview-card {
+        width: 100%;
+        position: static;
+        top: auto;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .settings-section {
+        padding: 15px;
+    }
+    .theme-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

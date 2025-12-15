@@ -1,0 +1,1294 @@
+/* ====== 1. Configurações Globais e Fontes ====== */
+/* Importa fontes do Google para ícones e símbolos materiais */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+/* ====== 2. Sistema de Variáveis e Temas ====== */
+
+/* Variáveis base (padrão para tema dark) */
+:root {
+  /* Tipografia e Animações */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --fluid-bezier: cubic-bezier(0.77, 0, 0.175, 1);
+  --transition-speed: 0.3s;
+  --anim-bezier-ease-out: cubic-bezier(0.165, 0.84, 0.44, 1); /* Curva suave de saida */
+
+  /* Cores Principais */
+  --bg-color: #0d1b2a;
+  --surface-color: #1b263b;
+  --text-primary: #EAEAEA;
+  --text-secondary: #A9A9B3;
+  --icon-color: #A9A9B3;
+  --highlight-color: #6C63FF;
+  --highlight-rgb: 108, 99, 255;
+  --bloom-color: rgba(108, 99, 255, 0.35);
+  --ripple-color: rgba(255, 255, 255, 0.08);
+
+  /* Cores de Vidro e Superfícies */
+  --glass-bg: rgba(27, 38, 59, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --sidebar-bg: #141c248a;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+
+  /* Bordas, Raio e Camadas */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+  --radius-full: 50%;
+  --z-sidebar: 1000;
+
+  /* Fundo Dinâmico (Background Animation) */
+  --background-animation-bg: linear-gradient(135deg, #040E1F 0%, #05132A 100%);
+  --background-animation-before-bg: radial-gradient(circle at 20% 20%, rgba(0, 140, 255, 0.2), transparent 40%),
+                                     radial-gradient(circle at 80% 70%, rgba(0, 90, 180, 0.15), transparent 50%),
+                                     radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03), transparent 70%);
+  --background-animation-before-opacity: 0.35;
+  --background-animation-span-bg: rgba(0, 170, 255, 0.25);
+  --background-animation-span-shadow: 0 0 4px rgba(0, 170, 255, 0.4);
+/*
+    === CORREÇÃO DO BACKGROUND DINÂMICO ===
+    Força o background-animation para o Z-INDEX mais baixo para evitar sobreposição.
+*/
+.background-animation {
+  position: fixed; /* Garante que cubra a viewport inteira */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Essencial: Garante que fique atrás de todos os outros elementos */
+  pointer-events: none; /* Garante que não interfira com cliques */
+}
+
+/* Opcional, mas recomendado: Garante que o conteúdo principal fique acima */
+#main-content {
+  position: relative;
+  z-index: 1; 
+}
+  /* Top Bar */
+  --top-bar-box-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+
+  /* Logo */
+  --logo-text-shadow: 0 0 4px rgba(79, 157, 255, 0.35),
+                      0 0 8px rgba(79, 157, 255, 0.25),
+                      0 0 12px rgba(79, 157, 255, 0.15);
+
+  /* Animação Pulse */
+  --pulse-to-color: #aaccff;
+  --pulse-from-shadow: 0 0 4px rgba(79, 157, 255, 0.35),
+                       0 0 8px rgba(79, 157, 255, 0.25),
+                       0 0 12px rgba(79, 157, 255, 0.15);
+  --pulse-to-shadow: 0 0 6px rgba(79, 157, 255, 0.4),
+                     0 0 12px rgba(79, 157, 255, 0.3),
+                     0 0 18px rgba(79, 157, 255, 0.2);
+
+  /* Sidebar Geral */
+  --sidebar-background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.02)),
+                        conic-gradient(from 210deg at 10% 10%, rgba(var(--highlight-rgb),0.02), transparent 30%);
+  --sidebar-box-shadow: 10px 0 28px rgba(0,0,0,0.42);
+  --sidebar-hover-background: rgba(255, 255, 255, 0.18);
+  --sidebar-hover-box-shadow: 10px 0 40px rgba(0, 0, 0, 0.3);
+
+  /* Sidebar Header */
+  --sidebar-header-border-bottom: 1px solid rgba(255,255,255,0.04);
+
+  /* Brand/Mark */
+  --brand-mark-background: linear-gradient(135deg, rgba(var(--highlight-rgb),0.22), rgba(255,255,255,0.03));
+  --brand-mark-box-shadow: 0 6px 16px rgba(var(--highlight-rgb),0.08), inset 0 -6px 20px rgba(0,0,0,0.12);
+
+  /* Sidebar Profile */
+  --sidebar-profile-background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  --sidebar-profile-border: 1px solid rgba(255,255,255,0.03);
+
+  /* Profile Avatar */
+  --profile-avatar-background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.06));
+  --profile-avatar-box-shadow: 0 6px 18px rgba(0,0,0,0.35), inset 0 -4px 12px rgba(255,255,255,0.02);
+  --profile-avatar-color: #fff;
+
+  /* Sidebar Menu */
+  --sidebar-menu-background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
+  --sidebar-menu-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  --sidebar-menu-scrollbar-thumb-background: linear-gradient(180deg, rgba(var(--highlight-rgb),0.16), rgba(var(--highlight-rgb),0.06));
+
+  /* Sidebar Menu Links */
+  --sidebar-menu-a-hover-background: linear-gradient(90deg, rgba(var(--highlight-rgb),0.06), rgba(255,255,255,0.01));
+  --sidebar-menu-a-active-color: #fff;
+  --sidebar-menu-a-active-background: linear-gradient(90deg, rgba(var(--highlight-rgb),0.16), rgba(var(--highlight-rgb),0.06));
+  --sidebar-menu-a-active-box-shadow: 0 12px 36px rgba(var(--highlight-rgb),0.12);
+  --sidebar-menu-a-active-border-color: rgba(255,255,255,0.04);
+  --sidebar-menu-a-active-before-background: linear-gradient(180deg, var(--highlight-color), rgba(255,255,255,0.9));
+
+  /* Sidebar Menu Links (Light-specific adjustments) */
+  --sidebar-menu-li-a-hover-background: rgba(255, 255, 255, 0.1);
+  --sidebar-menu-li-a-hover-box-shadow: 0 2px 10px rgba(var(--highlight-rgb), 0.15);
+  --sidebar-menu-li-a-active-color: #fff;
+  --sidebar-menu-li-a-active-background: linear-gradient(to right, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+  --sidebar-menu-li-a-active-box-shadow: inset 4px 0 0 var(--highlight-color),
+                                         0 4px 20px rgba(0, 0, 0, 0.2),
+                                         0 0 15px rgba(var(--highlight-rgb), 0.3);
+  --sidebar-menu-li-a-active-border: 1px solid rgba(255, 255, 255, 0.2);
+  --sidebar-menu-li-a-after-background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+
+  /* Sidebar Footer */
+  --sidebar-footer-border-top: 1px solid rgba(255,255,255,0.03);
+  --sidebar-footer-btn-background: linear-gradient(90deg, rgba(var(--highlight-rgb),0.14), rgba(255,255,255,0.02));
+  --sidebar-footer-btn-color: #fff;
+  --sidebar-footer-btn-border: 1px solid rgba(255,255,255,0.04);
+
+  /* Overlay e Modal */
+  --overlay-background-color: rgba(0, 0, 0, 0.6);
+  --modal-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+  /* Profile Modal */
+  --profile-modal-a-hover-background: var(--ripple-color);
+  --profile-modal-pic-border: 3px solid var(--highlight-color);
+  --profile-modal-a-hover-background-color: var(--surface-color);
+
+  /* Botões e Formulários */
+  --btn-primary-color: var(--bg-color);
+
+  /* Validação */
+  --form-group-input-invalid-border-color: #ff6b6b;
+  --form-group-input-invalid-box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
+  --validation-message-color: #ffbaba;
+}
+
+/* ====== 3. Sobrescritas para Tema Dark ====== */
+/* Ajustes específicos para o tema escuro */
+[data-theme="dark"] {
+  --bg-color: #0d1b2a;
+  --surface-color: #1b263b;
+  --glass-bg: rgba(27, 38, 59, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-primary: #f0f4f8;
+  --text-secondary: #a9b4c2;
+  --highlight-color: #5699ff;
+  --highlight-rgb: 86, 153, 255;
+  --bloom-color: rgba(86, 153, 255, 0.4);
+  --icon-color: #e0e1dd;
+}
+
+/* ====== 4. Sobrescritas para Tema Light ====== */
+/* Ajustes específicos para o tema claro */
+[data-theme="light"] {
+  /* Cores Principais */
+  --bg-color: #f0f4f8;
+  --surface-color: #ffffff;
+  --text-primary: #0d1b2a;
+  --text-secondary: #415a77;
+  --highlight-color: #0056b3;
+  --highlight-rgb: 0, 86, 179;
+  --bloom-color: rgba(0, 86, 179, 0.3);
+  --icon-color: #415a77;
+  --ripple-color: rgba(0, 0, 0, 0.1);
+
+  /* Cores de Vidro e Superfícies */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --sidebar-bg: #ffffff8a;
+  --sidebar-border: rgba(0, 0, 0, 0.08);
+
+  /* Fundo Dinâmico (Background Animation) */
+  --background-animation-bg: linear-gradient(135deg, #f0f4f8 0%, #e0e8f0 100%);
+  --background-animation-before-bg: radial-gradient(circle at 20% 20%, rgba(0, 86, 179, 0.2), transparent 40%),
+                                     radial-gradient(circle at 80% 70%, rgba(0, 50, 100, 0.15), transparent 50%),
+                                     radial-gradient(circle at 50% 50%, rgba(0,0,0,0.03), transparent 70%);
+  --background-animation-before-opacity: 0.25;
+  --background-animation-span-bg: rgba(0, 86, 179, 0.25);
+  --background-animation-span-shadow: 0 0 4px rgba(0, 86, 179, 0.4);
+
+  /* Top Bar */
+  --top-bar-box-shadow: 0 2px 18px rgba(0, 0, 0, 0.15);
+
+  /* Logo */
+  --logo-text-shadow: 0 0 4px rgba(0, 86, 179, 0.35),
+                      0 0 8px rgba(0, 86, 179, 0.25),
+                      0 0 12px rgba(0, 86, 179, 0.15);
+
+  /* Animação Pulse */
+  --pulse-to-color: #66aaff;
+  --pulse-from-shadow: 0 0 4px rgba(0, 86, 179, 0.35),
+                       0 0 8px rgba(0, 86, 179, 0.25),
+                       0 0 12px rgba(0, 86, 179, 0.15);
+  --pulse-to-shadow: 0 0 6px rgba(0, 86, 179, 0.4),
+                     0 0 12px rgba(0, 86, 179, 0.3),
+                     0 0 18px rgba(0, 86, 179, 0.2);
+
+  /* Sidebar Geral */
+  --sidebar-background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(255,255,255,0.02)),
+                        conic-gradient(from 210deg at 10% 10%, rgba(var(--highlight-rgb),0.02), transparent 30%);
+  --sidebar-box-shadow: 10px 0 28px rgba(0,0,0,0.12);
+  --sidebar-hover-background: rgba(0, 0, 0, 0.08);
+  --sidebar-hover-box-shadow: 10px 0 40px rgba(0, 0, 0, 0.15);
+
+  /* Sidebar Header */
+  --sidebar-header-border-bottom: 1px solid rgba(0,0,0,0.04);
+
+  /* Brand/Mark */
+  --brand-mark-background: linear-gradient(135deg, rgba(var(--highlight-rgb),0.22), rgba(0,0,0,0.03));
+  --brand-mark-box-shadow: 0 6px 16px rgba(var(--highlight-rgb),0.08), inset 0 -6px 20px rgba(255,255,255,0.12);
+
+  /* Sidebar Profile */
+  --sidebar-profile-background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(255,255,255,0.02));
+  --sidebar-profile-border: 1px solid rgba(0,0,0,0.03);
+
+  /* Profile Avatar */
+  --profile-avatar-background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(255,255,255,0.06));
+  --profile-avatar-box-shadow: 0 6px 18px rgba(0,0,0,0.15), inset 0 -4px 12px rgba(0,0,0,0.02);
+  --profile-avatar-color: #000;
+
+  /* Sidebar Menu */
+  --sidebar-menu-background: linear-gradient(to bottom, rgba(0, 0, 0, 0.03), transparent);
+  --sidebar-menu-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  --sidebar-menu-scrollbar-thumb-background: linear-gradient(180deg, rgba(var(--highlight-rgb),0.16), rgba(var(--highlight-rgb),0.06));
+
+  /* Sidebar Menu Links */
+  --sidebar-menu-a-hover-background: linear-gradient(90deg, rgba(var(--highlight-rgb),0.06), rgba(0,0,0,0.01));
+  --sidebar-menu-a-active-color: #000;
+  --sidebar-menu-a-active-background: linear-gradient(90deg, rgba(var(--highlight-rgb),0.16), rgba(var(--highlight-rgb),0.06));
+  --sidebar-menu-a-active-box-shadow: 0 12px 36px rgba(var(--highlight-rgb),0.08);
+  --sidebar-menu-a-active-border-color: rgba(0,0,0,0.04);
+  --sidebar-menu-a-active-before-background: linear-gradient(180deg, var(--highlight-color), rgba(0,0,0,0.9));
+
+  /* Sidebar Menu Links (Light-specific adjustments) */
+  --sidebar-menu-li-a-hover-background: rgba(0, 0, 0, 0.05);
+  --sidebar-menu-li-a-hover-box-shadow: 0 2px 10px rgba(var(--highlight-rgb), 0.1);
+  --sidebar-menu-li-a-active-color: #000;
+  --sidebar-menu-li-a-active-background: linear-gradient(to right, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.03));
+  --sidebar-menu-li-a-active-box-shadow: inset 4px 0 0 var(--highlight-color),
+                                         0 4px 20px rgba(0, 0, 0, 0.1),
+                                         0 0 15px rgba(var(--highlight-rgb), 0.2);
+  --sidebar-menu-li-a-active-border: 1px solid rgba(0, 0, 0, 0.1);
+  --sidebar-menu-li-a-after-background: radial-gradient(circle, rgba(0, 0, 0, 0.1), transparent);
+
+  /* Sidebar Footer */
+  --sidebar-footer-border-top: 1px solid rgba(0,0,0,0.03);
+  --sidebar-footer-btn-background: linear-gradient(90deg, rgba(var(--highlight-rgb),0.14), rgba(0,0,0,0.02));
+  --sidebar-footer-btn-color: #000;
+  --sidebar-footer-btn-border: 1px solid rgba(0,0,0,0.04);
+
+  /* Overlay e Modal */
+  --overlay-background-color: rgba(255, 255, 255, 0.6);
+  --modal-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+  /* Profile Modal */
+  --profile-modal-a-hover-background: var(--ripple-color);
+  --profile-modal-pic-border: 3px solid var(--highlight-color);
+  --profile-modal-a-hover-background-color: var(--ripple-color);
+
+  /* Botões e Formulários */
+  --btn-primary-color: #fff;
+
+  /* Validação */
+  --form-group-input-invalid-box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+  --validation-message-color: #ff6b6b;
+}
+
+/* ====== 5. Estilos Gerais e Reset ====== */
+/* Reset básico para margens, paddings e box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos para o corpo principal da página */
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color var(--transition-speed) var(--anim-bezier-ease-out), color var(--transition-speed) var(--anim-bezier-ease-out);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Espaçamento para a TopBar fixa */
+  padding-top: 65px;
+  /* Espaçamento para a Sidebar colapsada */
+  padding-left: 70px; /* Largura da sidebar colapsada */
+  min-height: 100vh;
+}
+
+/* ====== 6. Fundo Dinâmico (Background Animation) ====== */
+.background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--background-animation-bg);
+}
+.background-animation::before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -25%;
+  left: -25%;
+  background: var(--background-animation-before-bg);
+  opacity: var(--background-animation-before-opacity);
+  transform: scale(1.6);
+  animation: navy-gradient-flow 40s ease-in-out infinite alternate;
+}
+@keyframes navy-gradient-flow {
+  0% {
+    transform: translate(0, 0) scale(1.6) rotate(0deg);
+  }
+  25% {
+    transform: translate(-5%, 5%) scale(1.65) rotate(3deg);
+  }
+  50% {
+    transform: translate(-10%, 10%) scale(1.7) rotate(-3deg);
+  }
+  75% {
+    transform: translate(-5%, 5%) scale(1.65) rotate(5deg);
+  }
+  100% {
+    transform: translate(0, 0) scale(1.6) rotate(0deg);
+  }
+}
+.background-animation span {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: var(--background-animation-span-bg);
+  box-shadow: var(--background-animation-span-shadow);
+}
+
+/* ====== 7. Top Bar (Sempre Visível e Sobreposta) ====== */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 65px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 999; 
+  isolation: isolate;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--top-bar-box-shadow);
+  transition: all var(--transition-speed) var(--anim-bezier-ease-out);
+}
+.top-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.profile-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md); /* Quadrado arredondado */
+  background: var(--surface-color);
+  border: 1px solid var(--glass-border);
+  transition: all var(--transition-speed) var(--anim-bezier-ease-out);
+}
+.profile-btn .material-symbols-outlined {
+  font-size: 24px;
+}
+.logo {
+  position: fixed;
+  margin-top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--highlight-color);
+  text-shadow: var(--logo-text-shadow);
+  transition: all 0.5s var(--anim-bezier-ease-out);
+  pointer-events: none;
+  z-index: var(--z-logo, 9999);
+  animation: pulse-color 4s infinite alternate ease-in-out;
+}
+@keyframes pulse-color {
+  0% {
+    color: var(--highlight-color);
+    text-shadow: var(--pulse-from-shadow);
+  }
+  100% {
+    color: var(--pulse-to-color);
+    text-shadow: var(--pulse-to-shadow);
+  }
+}
+
+/* ====== 9. Sidebar ====== */
+/* Container principal da sidebar - MODO COLAPSADO (PADRÃO) */
+.sidebar {
+    position: fixed;
+    top: 65px; /* Alinhado com a top-bar */
+    left: 0;
+    height: calc(100vh - 65px); /* Altura total restante */
+    width: 70px; /* Largura Colapsada */
+    padding: 20px 10px;
+    z-index: var(--z-sidebar);
+    
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border-right: 1px solid var(--sidebar-border);
+    border-radius: 0; /* Formato de retângulo */
+    box-shadow: var(--sidebar-box-shadow);
+    
+    transform: translateX(0); /* Sempre visível */
+    
+    /* TRANSIÇÃO SUAVIZADA (Morfismo) */
+    transition: width 0.4s var(--anim-bezier-ease-out), 
+                height 0.4s var(--anim-bezier-ease-out), 
+                top 0.4s var(--anim-bezier-ease-out), 
+                left 0.4s var(--anim-bezier-ease-out), 
+                border-radius 0.4s var(--anim-bezier-ease-out),
+                padding 0.4s var(--anim-bezier-ease-out),
+                box-shadow 0.4s var(--anim-bezier-ease-out),
+                gap 0.4s var(--anim-bezier-ease-out); /* Anima o gap */
+    overflow-x: hidden; /* Esconde texto no modo colapsado */
+    overflow-y: hidden; /* Previne scroll indesejado durante animação */
+
+    display: flex;
+    flex-direction: column;
+    /* CORREÇÃO DE ESPAÇAMENTO: O gap principal é 16px por padrão */
+    gap: 16px; 
+}
+
+/* MODO EXPANDIDO (.active) */
+.sidebar.active {
+    width: 280px; /* Largura Expandida */
+    height: calc(100vh - 85px); /* Altura original flutuante */
+    top: 75px; /* Posição original flutuante */
+    left: 10px; /* Posição original flutuante */
+    border-radius: var(--radius-lg); /* Bordas arredondadas */
+    padding: 20px;
+    border-right: 1px solid var(--glass-border); /* Borda de vidro original */
+    gap: 16px; /* Garante o gap de 16px no modo expandido */
+    overflow-y: auto; /* Permite scroll se necessário no expandido */
+}
+
+/* Header da Sidebar */
+.sidebar-header {
+    padding: 0;
+    margin: 0;
+    border: none;
+    flex-shrink: 0; 
+    transition: all 0.4s var(--anim-bezier-ease-out);
+}
+
+.sidebar-header h2 {
+    /* ANIMAÇÃO SUAVE */
+    display: block; 
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    /* Animação de entrada do título */
+    transform: translateY(-10px);
+    transition: opacity 0.3s var(--anim-bezier-ease-out), 
+                max-height 0.4s var(--anim-bezier-ease-out),
+                transform 0.4s var(--anim-bezier-ease-out),
+                padding-bottom 0.4s var(--anim-bezier-ease-out), 
+                margin-bottom 0.4s var(--anim-bezier-ease-out),
+                border-bottom 0.4s var(--anim-bezier-ease-out);
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.sidebar.active .sidebar-header h2 {
+    /* ANIMAÇÃO SUAVE */
+    opacity: 1;
+    max-height: 100px; 
+    transform: translateY(0);
+    padding-bottom: 15px;
+    margin-bottom: 0; /* Gap do container pai vai cuidar disso */
+    border-bottom: 1px solid var(--glass-border);
+    transition-delay: 0.1s; /* Atraso para o título aparecer */
+}
+
+/* Menu principal */
+.sidebar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+    /* CORREÇÃO DE SCROLL */
+    flex-grow: 1; /* Menu cresce para ocupar espaço e empurrar o resto */
+    overflow-y: auto; /* Adiciona scroll APENAS ao menu */
+
+    /* Esconde a barra de scroll */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    transition: all 0.4s var(--anim-bezier-ease-out);
+}
+.sidebar-menu::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.sidebar-menu li {
+    opacity: 1; 
+    transform: translateX(0); 
+    transition: opacity 0.3s var(--anim-bezier-ease-out), transform 0.3s var(--anim-bezier-ease-out);
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    /* CORREÇÃO DE ALINHAMENTO */
+    justify-content: center; /* Centralizado no modo colapsado */
+    gap: 0; /* CORREÇÃO DE ALINHAMENTO: Zera o gap por padrão */
+    padding: 14px; /* Padding de ícone (quadrado) */
+    
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 500;
+    border-radius: var(--radius-md); 
+    transition: background 0.2s var(--anim-bezier-ease-out), 
+                color 0.2s var(--anim-bezier-ease-out),
+                gap 0.3s var(--anim-bezier-ease-out), /* Anima o gap */
+                transform 0.15s var(--anim-bezier-ease-out),
+                padding 0.3s var(--anim-bezier-ease-out);
+    white-space: nowrap; /* Impede quebra de linha */
+}
+
+/* Texto do link (ANIMAÇÃO SUAVE - Slide + Fade) */
+.sidebar-menu li a span:not(.material-symbols-outlined) {
+    display: inline-block;
+    opacity: 0;
+    max-width: 0; /* Anima o 'width' */
+    transform: translateX(-10px); /* Começa "atrás" */
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+    /* Transição melhorada */
+    transition: opacity 0.3s var(--anim-bezier-ease-out), 
+                max-width 0.4s var(--anim-bezier-ease-out), 
+                transform 0.3s var(--anim-bezier-ease-out);
+    transition-delay: 0s;
+}
+
+.sidebar-menu li a .material-symbols-outlined {
+    display: inline-block; 
+    color: var(--text-secondary);
+    transition: color 0.2s var(--anim-bezier-ease-out), 
+                transform 0.2s var(--anim-bezier-ease-out),
+                font-size 0.3s var(--anim-bezier-ease-out);
+    flex-shrink: 0;
+    font-size: 26px; /* Ícones maiores */
+}
+
+/* Hover/Active colapsado (ANIMAÇÃO "POP") */
+.sidebar-menu li a:hover {
+    background: var(--ripple-color);
+    color: var(--highlight-color);
+    transform: scale(1.05); /* Efeito "Pop" */
+}
+
+.sidebar-menu li a:active {
+    transform: scale(0.98); 
+}
+
+.sidebar-menu li a:hover .material-symbols-outlined {
+    color: var(--highlight-color);
+    transform: rotate(-5deg); /* Leve rotação no hover */
+}
+
+/* Estilos do Sidebar EXPANDIDO (.active) */
+.sidebar.active .sidebar-menu li a {
+    justify-content: flex-start; /* Alinhado à esquerda */
+    padding: 14px 10px; /* Padding original */
+    gap: 16px; /* CORREÇÃO DE ALINHAMENTO: Restaura o gap */
+}
+
+.sidebar.active .sidebar-menu li a span:not(.material-symbols-outlined) {
+    /* ANIMAÇÃO SUAVE (Slide + Fade) */
+    opacity: 1;
+    max-width: 150px; /* Expande o 'width' */
+    transform: translateX(0); /* Vai para a posição final */
+}
+
+/* Atrasos em cascata para o TEXTO */
+.sidebar.active .sidebar-menu li:nth-child(1) span:not(.material-symbols-outlined) { transition-delay: 0.1s; }
+.sidebar.active .sidebar-menu li:nth-child(2) span:not(.material-symbols-outlined) { transition-delay: 0.15s; }
+.sidebar.active .sidebar-menu li:nth-child(3) span:not(.material-symbols-outlined) { transition-delay: 0.2s; }
+.sidebar.active .sidebar-menu li:nth-child(4) span:not(.material-symbols-outlined) { transition-delay: 0.25s; }
+.sidebar.active .sidebar-menu li:nth-child(5) span:not(.material-symbols-outlined) { transition-delay: 0.3s; }
+
+.sidebar.active .sidebar-menu li a .material-symbols-outlined {
+    font-size: 24px; /* Tamanho original */
+}
+
+.sidebar.active .sidebar-menu li a:hover {
+    transform: translateX(5px); /* Efeito de push original */
+}
+
+.sidebar.active .sidebar-menu li a:active {
+    transform: translateX(2px) scale(0.99); /* Feedback de clique original */
+}
+
+/* ====== NOVO: Rodapé da Sidebar ====== */
+.sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    /* CORREÇÃO DE ESPAÇAMENTO: O gap interno do rodapé é 8px quando colapsado */
+    gap: 8px;
+    transition: gap 0.4s var(--anim-bezier-ease-out);
+}
+
+/* Quando expandido, o gap do rodapé vira 16px */
+.sidebar.active .sidebar-footer {
+    gap: 16px;
+}
+
+/* Frase de conhecimento (OCULTA QUANDO COLAPSADO) */
+.sidebar-knowledge {
+    display: block;
+    margin: 0;
+    padding: 0 16px; 
+    background: var(--surface-color);
+    border-radius: var(--radius-md);
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+    font-size: 0.875rem;
+    
+    /* ANIMAÇÃO SUAVE (Zoom + Fade) */
+    opacity: 0;
+    max-height: 0;
+    transform: scale(0.95); /* Começa menor */
+    transform-origin: top center;
+    overflow: hidden;
+    transition: opacity 0.3s var(--anim-bezier-ease-out), 
+                max-height 0.4s var(--anim-bezier-ease-out), 
+                transform 0.3s var(--anim-bezier-ease-out),
+                padding 0.4s var(--anim-bezier-ease-out);
+}
+
+.sidebar.active .sidebar-knowledge {
+    opacity: 1;
+    max-height: 300px; 
+    transform: scale(1); /* Tamanho normal */
+    padding: 16px; /* Restaura padding total */
+    transition-delay: 0.3s; /* Atraso para aparecer depois dos links */
+}
+
+.knowledge-title {
+    margin: 0 0 8px 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--highlight-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s var(--anim-bezier-ease-out);
+}
+#knowledge-quote {
+    margin: 0;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    transition: all 0.3s var(--anim-bezier-ease-out);
+}
+
+/* Ícones sociais (OCULTOS QUANDO COLAPSADO) */
+.sidebar-socials {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    gap: 16px; 
+    padding: 8px 0;
+    
+    /* ANIMAÇÃO SUAVE (Zoom + Fade) */
+    opacity: 0;
+    max-height: 0;
+    transform: scale(0.95);
+    transform-origin: bottom center;
+    overflow: hidden;
+    transition: opacity 0.3s var(--anim-bezier-ease-out), 
+                max-height 0.4s var(--anim-bezier-ease-out),
+                transform 0.3s var(--anim-bezier-ease-out),
+                flex-direction 0.4s var(--anim-bezier-ease-out),
+                gap 0.4s var(--anim-bezier-ease-out),
+                padding 0.4s var(--anim-bezier-ease-out);
+}
+
+.sidebar.active .sidebar-socials {
+    flex-direction: row; /* Layout original (expandido) */
+    justify-content: center;
+    gap: 20px; /* Gap original */
+    opacity: 1;
+    max-height: 100px; 
+    transform: scale(1);
+    transition-delay: 0.4s; /* Aparece por último */
+    padding: 8px 0;
+}
+
+.sidebar-socials a {
+    color: var(--text-secondary);
+    transition: all 0.2s var(--anim-bezier-ease-out);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sidebar-socials a:hover {
+    color: var(--highlight-color);
+    transform: translateY(-2px) scale(1.1);
+}
+.sidebar-socials svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+    transition: inherit;
+}
+.sidebar-socials a[aria-label*="Instagram"] svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+.sidebar-socials a[aria-label*="X"] svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Botão Apoie-nos */
+.sidebar-support {
+    opacity: 1; 
+    transform: translateX(0);
+    transition: opacity 0.3s var(--anim-bezier-ease-out), transform 0.3s var(--anim-bezier-ease-out);
+}
+
+#support-us-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centralizado (colapsado) */
+    /* CORREÇÃO DE ALINHAMENTO */
+    gap: 0;
+    padding: 14px; /* Padding de ícone */
+    
+    background: transparent; /* Sem fundo (colapsado) */
+    color: var(--highlight-color);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s var(--anim-bezier-ease-out),
+                gap 0.3s var(--anim-bezier-ease-out),
+                padding 0.3s var(--anim-bezier-ease-out),
+                background 0.3s var(--anim-bezier-ease-out),
+                box-shadow 0.3s var(--anim-bezier-ease-out);
+    box-shadow: none; /* Sem sombra (colapsado) */
+}
+
+/* ANIMAÇÃO SUAVE (Slide + Fade) */
+#support-us-btn span:not(.material-symbols-outlined) {
+    display: inline-block;
+    opacity: 0;
+    max-width: 0;
+    transform: translateX(-10px);
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+    transition: opacity 0.3s var(--anim-bezier-ease-out), 
+                max-width 0.4s var(--anim-bezier-ease-out), 
+                transform 0.3s var(--anim-bezier-ease-out);
+    transition-delay: 0s;
+}
+#support-us-btn .material-symbols-outlined {
+    display: inline-block;
+    transition: transform 0.2s var(--anim-bezier-ease-out);
+}
+
+#support-us-btn:hover {
+    background: var(--ripple-color);
+    transform: scale(1.05); /* "Pop" */
+    box-shadow: none;
+}
+#support-us-btn:hover .material-symbols-outlined {
+    transform: scale(1.1);
+}
+
+#support-us-btn:active {
+    transform: scale(0.98);
+}
+
+/* Estilos "Apoie-nos" EXPANDIDO (.active) */
+.sidebar.active #support-us-btn {
+    padding: 14px 16px; /* Padding original */
+    background: var(--surface-color); /* Fundo original */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra original */
+    gap: 12px; /* Restaura gap */
+}
+
+.sidebar.active #support-us-btn span:not(.material-symbols-outlined) {
+    /* ANIMAÇÃO SUAVE */
+    opacity: 1;
+    max-width: 150px;
+    transform: translateX(0);
+    transition-delay: 0.3s; /* Atraso */
+}
+
+.sidebar.active #support-us-btn:hover {
+    background: var(--ripple-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.sidebar.active #support-us-btn:hover .material-symbols-outlined {
+    transform: none; /* Remove a animação de hover colapsada */
+}
+
+/* NOVO: Botão Configurações */
+.sidebar-settings {
+    flex-shrink: 0;
+    opacity: 1; 
+    transform: translateX(0);
+    transition: opacity 0.3s var(--anim-bezier-ease-out), transform 0.3s var(--anim-bezier-ease-out);
+}
+
+#sidebar-settings-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centralizado (colapsado) */
+    /* CORREÇÃO DE ALINHAMENTO */
+    gap: 0;
+    padding: 14px; /* Padding de ícone */
+    
+    background: transparent; /* Sem fundo */
+    color: var(--text-secondary); /* Cor de ícone padrão */
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s var(--anim-bezier-ease-out),
+                gap 0.3s var(--anim-bezier-ease-out),
+                padding 0.3s var(--anim-bezier-ease-out),
+                background 0.3s var(--anim-bezier-ease-out),
+                color 0.3s var(--anim-bezier-ease-out),
+                box-shadow 0.3s var(--anim-bezier-ease-out);
+    box-shadow: none;
+}
+
+/* ANIMAÇÃO SUAVE (Slide + Fade) */
+#sidebar-settings-btn span:not(.material-symbols-outlined) {
+    display: inline-block;
+    opacity: 0;
+    max-width: 0;
+    transform: translateX(-10px);
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+    transition: opacity 0.3s var(--anim-bezier-ease-out), 
+                max-width 0.4s var(--anim-bezier-ease-out), 
+                transform 0.3s var(--anim-bezier-ease-out);
+    transition-delay: 0s;
+}
+#sidebar-settings-btn .material-symbols-outlined {
+    display: inline-block;
+    font-size: 26px; /* Ícone maior */
+    transition: transform 0.2s var(--anim-bezier-ease-out),
+                font-size 0.3s var(--anim-bezier-ease-out);
+}
+
+#sidebar-settings-btn:hover {
+    background: var(--ripple-color);
+    color: var(--highlight-color); /* Destaque no hover */
+    transform: scale(1.05); /* "Pop" */
+    box-shadow: none;
+}
+#sidebar-settings-btn:hover .material-symbols-outlined {
+    transform: rotate(15deg); /* Rotação no hover */
+}
+
+#sidebar-settings-btn:active {
+    transform: scale(0.98);
+}
+
+/* Estilos "Configurações" EXPANDIDO (.active) */
+.sidebar.active #sidebar-settings-btn {
+    justify-content: flex-start; /* Alinhado à esquerda */
+    padding: 14px 10px; /* Padding de link de menu */
+    background: transparent;
+    color: var(--text-primary);
+    box-shadow: none;
+    gap: 16px; /* Restaura gap (igual ao menu) */
+}
+
+.sidebar.active #sidebar-settings-btn span:not(.material-symbols-outlined) {
+    /* ANIMAÇÃO SUAVE */
+    opacity: 1;
+    max-width: 150px;
+    transform: translateX(0);
+    transition-delay: 0.35s; /* Atraso (um pouco depois do 'Apoie-nos') */
+}
+
+.sidebar.active #sidebar-settings-btn .material-symbols-outlined {
+    font-size: 24px; /* Tamanho original */
+}
+
+.sidebar.active #sidebar-settings-btn:hover {
+    background: var(--ripple-color);
+    color: var(--highlight-color);
+    transform: translateX(5px); /* Efeito push */
+    box-shadow: none;
+}
+.sidebar.active #sidebar-settings-btn:hover .material-symbols-outlined {
+    transform: none; /* Remove a animação de hover colapsada */
+}
+
+/* ====== 10. Conteúdo Principal ====== */
+.content {
+  padding-top: 20px; 
+  padding-left: 20px; 
+  padding-right: 20px;
+  padding-bottom: 20px;
+  transition: padding-left 0.4s var(--anim-bezier-ease-out);
+  z-index: 1; 
+}
+
+/* ====== 11. Botões e Elementos Gerais ====== */
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--icon-color);
+  transition: background 0.2s var(--anim-bezier-ease-out), transform 0.1s var(--anim-bezier-ease-out);
+}
+.icon-btn:hover {
+  background: var(--ripple-color);
+}
+.icon-btn:active {
+  transform: scale(0.9);
+  background: var(--ripple-color);
+}
+.icon-btn .material-symbols-outlined {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+/* ====== 12. Overlay e Modals ====== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--overlay-background-color);
+  z-index: 900; 
+  opacity: 0;
+  pointer-events: none; 
+  transition: opacity 0.3s var(--anim-bezier-ease-out);
+}
+
+.sidebar.active ~ .overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal {
+  position: fixed;
+  z-index: 901; 
+  border-radius: var(--radius-lg);
+  box-shadow: var(--modal-box-shadow);
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(0.98);
+  transition: opacity 0.3s var(--anim-bezier-ease-out), transform 0.3s var(--anim-bezier-ease-out);
+}
+.modal.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.modal-content {
+  padding: 24px;
+}
+.profile-modal {
+  top: 75px;
+  right: 16px;
+  width: 250px; 
+  transform-origin: top right;
+  transform: translateY(0) scale(0.95);
+  z-index: var(--z-sidebar) + 1; 
+}
+.profile-modal.active {
+  transform: translateY(0) scale(1);
+}
+.profile-modal .modal-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 10px;
+}
+.profile-modal strong {
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.profile-modal a {
+  padding: 10px 12px;
+  text-decoration: none;
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s var(--anim-bezier-ease-out);
+  width: 100%;
+  text-align: center;
+}
+.profile-modal a:hover {
+  background: var(--profile-modal-a-hover-background);
+}
+.profile-modal-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--surface-color); 
+  border: var(--profile-modal-pic-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  color: var(--highlight-color);
+  transition: all 0.3s var(--anim-bezier-ease-out);
+}
+.profile-modal-pic .material-symbols-outlined {
+  font-size: 36px;
+  color: inherit;
+}
+#modal-username-greet {
+  margin-bottom: 10px;
+  color: var(--highlight-color);
+  font-weight: 600;
+}
+.profile-modal a#logout-btn {
+  width: 100%;
+  text-align: center;
+}
+.login-modal,
+.register-modal {
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 400px;
+  transform: translate(-50%, -50%) scale(0.95);
+  z-index: var(--z-sidebar) + 999; 
+}
+.login-modal.active,
+.register-modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+.modal h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* ====== 13. Formulários (Estilo Android) ====== */
+.form-group {
+  margin-bottom: 16px;
+  transition: all 0.3s var(--anim-bezier-ease-out);
+}
+.form-group label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  display: block;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--surface-color);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: var(--font-family);
+  transition: border-color 0.2s var(--anim-bezier-ease-out), box-shadow 0.2s var(--anim-bezier-ease-out);
+}
+.form-group input:focus {
+  outline: none;
+  border-color: var(--highlight-color);
+  box-shadow: 0 0 0 3px var(--bloom-color);
+}
+.form-group input.invalid {
+  border-color: var(--form-group-input-invalid-border-color);
+  box-shadow: var(--form-group-input-invalid-box-shadow);
+}
+.form-group-radio {
+  margin: 16px 0;
+}
+.form-group-radio div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.form-group-radio input {
+  margin-right: 10px;
+}
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--highlight-color);
+  color: var(--btn-primary-color);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s var(--anim-bezier-ease-out), box-shadow 0.2s var(--anim-bezier-ease-out);
+}
+.btn-primary:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px var(--bloom-color);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+.form-link {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.form-link a {
+  color: var(--highlight-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+.form-group select {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--surface-color);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: var(--font-family);
+  transition: border-color 0.2s var(--anim-bezier-ease-out), box-shadow 0.2s var(--anim-bezier-ease-out);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.form-group select:focus {
+  outline: none;
+  border-color: var(--highlight-color);
+  box-shadow: 0 0 0 3px var(--bloom-color);
+}
+.form-group.select-group {
+  position: relative;
+}
+.form-group.select-group::after {
+  content: 'expand_more';
+  font-family: 'Material Symbols Outlined';
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--text-secondary);
+  position: absolute;
+  right: 16px;
+  top: calc(50% + 10px); 
+  pointer-events: none;
+}
+.conditional-fields {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s var(--anim-bezier-ease-out),
+              opacity 0.3s var(--anim-bezier-ease-out),
+              margin-top 0.5s var(--anim-bezier-ease-out);
+}
+.conditional-fields.active {
+  max-height: 300px; 
+  opacity: 1;
+  margin-top: 16px; 
+}
+.validation-message {
+  font-size: 0.8rem;
+  color: var(--validation-message-color); 
+  margin-top: 6px;
+  display: none; 
+}
+
+/* Garante que o tema light também funcione com a nova sidebar */
+[data-theme="light"] .sidebar {
+  background: var(--sidebar-bg) !important;
+  border-color: var(--sidebar-border) !important;
+}
+
+[data-theme="light"] .sidebar.active {
+    border-color: var(--glass-border) !important;
+}
+/* ... Conteúdo anterior de styles.css ... */
+
+/* ====== 2. Sistema de Variáveis e Temas ====== */
+
+/* Variáveis base (padrão para tema dark) */
+:root {
+  /* Tipografia e Animações */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --fluid-bezier: cubic-bezier(0.77, 0, 0.175, 1);
+  --transition-speed: 0.3s;
+  --anim-bezier-ease-out: cubic-bezier(0.165, 0.84, 0.44, 1); 
+  --radius-sm: 8px;
+  --radius-md: 12px;
+
+  /* Cores Principais */
+  --bg-color: #0d1b2a;
+  --surface-color: #1b263b;
+  --surface-color-secondary: #141c24; /* NOVO: Para sidebar, grupos de settings etc. */
+  --text-primary: #EAEAEA;
+  --text-secondary: #A9A9B3;
+  --icon-color: #A9A9B3;
+  --highlight-color: #6C63FF;
+  --highlight-rgb: 108, 99, 255;
+  --bloom-color: rgba(108, 99, 255, 0.35); /* NOVO: Usado para sombras de destaque */
+  --glass-bg: rgba(27, 38, 59, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --ripple-color: rgba(255, 255, 255, 0.08); /* Efeito hover sutil */
+  --btn-primary-color: #0d1b2a; /* Cor do texto no botão principal em dark mode */
+
+  /* Cores Auxiliares (Ex: Status) */
+  --color-success: #4CAF50;
+  --color-error: #F44336;
+  --color-warning: #FFC107;
+}
+
+/* Sobrescritas para Tema Light (Padrão) */
+[data-theme="light"] {
+  --bg-color: #f0f4f8;
+  --surface-color: #ffffff;
+  --surface-color-secondary: #F0F4F8; /* Cor mais clara para elementos secundários */
+  --text-primary: #0d1b2a;
+  --text-secondary: #415a77;
+  --icon-color: #415a77;
+  --highlight-color: #0056b3;
+  --highlight-rgb: 0, 86, 179;
+  --bloom-color: rgba(0, 86, 179, 0.35);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --ripple-color: rgba(0, 0, 0, 0.08);
+  --btn-primary-color: #ffffff;
+}
+
+
+/* ====== 13. MODO LEVE (NOVO) ====== */
+/* Esta classe desativa TODAS as animações e transições no corpo da aplicação */
+body.no-animation,
+body.no-animation *,
+body.no-animation .background-animation {
+    /* Prioriza a remoção total de efeitos que prejudicam a performance */
+    transition: none !important;
+    transform: none !important; 
+    animation: none !important; 
+    background: var(--bg-color) !important; /* Fundo estático */
+}
+
+/* ... o restante dos estilos (top-bar, sidebar, botões, etc.) ... */

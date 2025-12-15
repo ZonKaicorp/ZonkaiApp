@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Entrar | Sistema</title>
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <!-- CSS Global -->
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <link rel="stylesheet" href="../css/login.css"/>
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="login-box">
+      <div class="logo">
+        <h1>Sistema</h1>
+      </div>
+
+      <h2 id="formTitle">Bem-vindo de volta</h2>
+      <p id="formSubtitle">Faça login para continuar</p>
+
+      <div class="tab-switch">
+        <button class="tab-btn active" data-form="login">Entrar</button>
+        <button class="tab-btn" data-form="register">Registrar-se</button>
+      </div>
+
+      <!-- Formulário Login -->
+      <form id="loginForm">
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" id="loginEmail" placeholder="seu@email.com" required />
+          <div class="error-message" id="emailError">E-mail deve terminar com @gmail.com</div>
+        </div>
+        <div class="form-group">
+          <label>Senha</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required />
+          <div class="error-message" id="passwordError">A senha deve ter mais de 8 caracteres</div>
+        </div>
+
+        <!-- Opções de Tipo de Usuário (agora acima do botão Entrar) -->
+        <div class="user-type-selection" style="margin: 24px 0 16px; text-align: center;">
+          <label style="margin-right: 24px; font-weight: 500; cursor: pointer;">
+            <input type="radio" name="userType" value="gestor" checked style="margin-right: 8px;"> Gestor
+          </label>
+          <label style="font-weight: 500; cursor: pointer;">
+            <input type="radio" name="userType" value="profissional" style="margin-right: 8px;"> Profissional
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary">Entrar</button>
+      </form>
+
+      <!-- Formulário Registro -->
+      <form id="registerForm" style="display: none;">
+        <div class="form-group">
+          <label>Nome completo</label>
+          <input type="text" placeholder="João Silva" required />
+        </div>
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" placeholder="seu@email.com" required />
+        </div>
+        <div class="form-group">
+          <label>Senha</label>
+          <input type="password" placeholder="Mínimo 6 caracteres" required />
+        </div>
+        <button type="submit" class="btn-primary">Criar conta</button>
+      </form>
+
+      <p class="switch-text" id="switchText">
+        Não tem conta? <a href="#" id="switchLink">Registre-se agora</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const formTitle = document.getElementById('formTitle');
+    const formSubtitle = document.getElementById('formSubtitle');
+    const switchText = document.getElementById('switchText');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+
+    const loginEmail = document.getElementById('loginEmail');
+    const loginPassword = document.getElementById('loginPassword');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const emailGroup = loginEmail.parentElement;
+    const passwordGroup = loginPassword.parentElement;
+
+    function validateEmail() {
+      const email = loginEmail.value.trim();
+      const isValid = email.endsWith('@gmail.com') && email.includes('@');
+      
+      if (!loginEmail.value) {
+        emailGroup.classList.remove('error', 'valid');
+        emailError.style.display = 'none';
+        return false;
+      }
+
+      if (!isValid) {
+        emailGroup.classList.add('error');
+        emailGroup.classList.remove('valid');
+        emailError.style.display = 'block';
+        return false;
+      } else {
+        emailGroup.classList.remove('error');
+        emailGroup.classList.add('valid');
+        emailError.style.display = 'none';
+        return true;
+      }
+    }
+
+    function validatePassword() {
+      const password = loginPassword.value;
+      const isValid = password.length > 8;
+
+      if (!loginPassword.value) {
+        passwordGroup.classList.remove('error', 'valid');
+        passwordError.style.display = 'none';
+        return false;
+      }
+
+      if (!isValid) {
+        passwordGroup.classList.add('error');
+        passwordGroup.classList.remove('valid');
+        passwordError.style.display = 'block';
+        return false;
+      } else {
+        passwordGroup.classList.remove('error');
+        passwordGroup.classList.add('valid');
+        passwordError.style.display = 'none';
+        return true;
+      }
+    }
+
+    loginEmail.addEventListener('input', validateEmail);
+    loginPassword.addEventListener('input', validatePassword);
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.form;
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (target === 'login') {
+          loginForm.style.display = 'block';
+          registerForm.style.display = 'none';
+          formTitle.textContent = 'Bem-vindo de volta';
+          formSubtitle.textContent = 'Faça login para continuar';
+          switchText.innerHTML = 'Não tem conta? <a href="#" id="switchLink">Registre-se agora</a>';
+        } else {
+          loginForm.style.display = 'none';
+          registerForm.style.display = 'block';
+          formTitle.textContent = 'Crie sua conta';
+          formSubtitle.textContent = 'É rápido e fácil';
+          switchText.innerHTML = 'Já tem conta? <a href="#" id="switchLink">Entre agora</a>';
+        }
+
+        const switchLink = document.getElementById('switchLink');
+        if (switchLink) {
+          switchLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const other = target === 'login' ? 'register' : 'login';
+            document.querySelector(`.tab-btn[data-form="${other}"]`).click();
+          });
+        }
+      });
+    });
+
+    // Submissão do login com redirecionamento por tipo
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (validateEmail() && validatePassword()) {
+        const userType = document.querySelector('input[name="userType"]:checked').value;
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userType', userType);
+
+        if (userType === 'gestor') {
+          window.location.href = '../../screens/companies/html/home.html';
+        } else if (userType === 'profissional') {
+          window.location.href = '../../screens/professionals/html/home.html';
+        }
+      } else {
+        alert('Corrija os erros antes de continuar.');
+      }
+    });
+
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      localStorage.setItem('isLoggedIn', 'true');
+      window.location.href = '../../index.html';
+    });
+
+    validateEmail();
+    validatePassword();
+  </script>
+</body>
+</html>

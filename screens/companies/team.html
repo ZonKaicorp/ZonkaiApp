@@ -1,0 +1,32 @@
+<div class="team-dashboard">
+    
+    <div class="team-header-section">
+        <div class="header-content">
+            <h1>Gestão de Equipe</h1>
+            <p>Gerencie colaboradores, horários e status em tempo real.</p>
+        </div>
+        <button class="btn-new-member">
+            <span class="material-symbols-outlined">add</span>
+            Novo Membro
+        </button>
+    </div>
+
+    <div class="team-toolbar glass-panel">
+        <div class="search-wrapper">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" id="team-search-input" placeholder="Buscar por nome ou cargo...">
+        </div>
+        <div class="filter-wrapper">
+            <select id="team-status-filter">
+                <option value="all">Todos os Status</option>
+                <option value="online">Online</option>
+                <option value="meeting">Em Reunião</option>
+                <option value="offline">Offline</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="dynamic-team-grid" class="team-grid-area">
+        </div>
+
+</div>

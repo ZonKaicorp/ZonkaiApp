@@ -1,0 +1,38 @@
+<div class="conversation-container" role="region" aria-label="Conversa">
+    <div class="chat-header">
+      <button class="icon-btn" id="back-to-chat-list" aria-label="Voltar à lista">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <div class="chat-avatar lumie-avatar small">
+        <span class="material-symbols-outlined">smart_toy</span>
+      </div>
+      <div class="header-details">
+        <span class="chat-name">Lumie (IA)</span>
+        <span class="chat-status">Online</span>
+      </div>
+    </div>
+  
+    <div class="chat-history" id="chat-history" role="log" aria-live="polite">
+      <div class="chat-bubble received">
+        <div class="bubble-content">
+          <div class="bubble-text">Olá! Como posso ajudar na gestão hoje?</div>
+          <div class="bubble-meta"><span class="msg-time">14:02</span></div>
+        </div>
+      </div>
+  
+      <div class="chat-bubble typing" id="typing-indicator" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  
+    <div class="chat-input-area" id="chat-input-area">
+      <button class="icon-btn attach-btn" id="attach-btn" aria-label="Anexar">
+        <span class="material-symbols-outlined">attach_file</span>
+      </button>
+      <input type="text" placeholder="Digite uma mensagem..." id="chat-message-input" aria-label="Mensagem">
+      <button class="icon-btn send-btn" id="send-btn" aria-label="Enviar">
+        <span class="material-symbols-outlined">send</span>
+      </button>
+    </div>
+  </div>
+  

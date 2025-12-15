@@ -1,0 +1,49 @@
+<div class="home-news-container fade-in">
+    
+    <div class="user-info-card glass-effect">
+        <div class="user-avatar">
+            <span class="material-symbols-outlined">account_circle</span>
+        </div>
+        <div class="user-details">
+            <h3>Olá, Gestor</h3>
+            <p>Resumo do Mercado: <span class="market-status up">Alta de 1.2% <span class="material-symbols-outlined">trending_up</span></span></p>
+        </div>
+        <div class="date-display" id="current-date"></div>
+    </div>
+
+    <div class="news-categories">
+        <button class="category-chip active" data-category="all">Tudo</button>
+        <button class="category-chip" data-category="finance">Mercado Financeiro</button>
+        <button class="category-chip" data-category="tech">Tecnologia & Blockchain</button>
+        <button class="category-chip" data-category="business">Gestão</button>
+    </div>
+
+    <div id="news-loader" class="loader-container" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="news-content" class="news-layout">
+        
+        <div class="news-hero-section">
+            <div class="main-headline-card" id="hero-article"></div>
+            <div class="trending-list-card">
+                <h4><span class="material-symbols-outlined">local_fire_department</span> Em Alta</h4>
+                <div class="trending-items" id="trending-list"></div>
+            </div>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 40px;">Destaques da Semana</h3>
+        <div class="weekly-highlights-grid" id="weekly-highlights-grid"></div>
+        
+        <h3 class="section-title">Vídeos: Técnicas de Gestão</h3>
+        <div class="video-gallery-grid" id="video-grid"></div>
+
+        <h3 class="section-title">Cursos de Gestão e Liderança</h3>
+        <div class="courses-grid" id="courses-grid">
+            </div>
+
+        <h3 class="section-title">Últimas do Mercado</h3>
+        <div class="news-grid-bottom" id="bottom-grid"></div>
+
+    </div>
+</div>

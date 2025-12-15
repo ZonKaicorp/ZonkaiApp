@@ -1,0 +1,251 @@
+<div class="settings-container fade-in">
+    <aside class="settings-sidebar">
+        <div class="settings-header">
+            <h3>Configurações</h3>
+        </div>
+        <ul class="settings-menu">
+            <li class="active" data-target="appearance">
+                <span class="material-symbols-outlined">palette</span>
+                <span>Aparência</span>
+            </li>
+            <li data-target="general">
+                <span class="material-symbols-outlined">tune</span>
+                <span>Geral</span>
+            </li>
+            <li data-target="account">
+                <span class="material-symbols-outlined">person</span>
+                <span>Conta</span>
+            </li>
+            <li data-target="notifications"> <span class="material-symbols-outlined">notifications</span>
+                <span>Notificações</span>
+            </li>
+            <li data-target="security">
+                <span class="material-symbols-outlined">lock</span>
+                <span>Segurança</span>
+            </li>
+            <li data-target="about">
+                <span class="material-symbols-outlined">info</span>
+                <span>Sobre nós</span>
+            </li>
+        </ul>
+    </aside>
+
+    <main class="settings-content">
+        
+        <section id="appearance" class="settings-section active">
+            <h2>Personalização de Tema</h2>
+            <p class="section-desc">Escolha um tema que combine com seu estilo de trabalho.</p>
+
+            <div class="theme-layout">
+                <div class="theme-selector">
+                    <h4>Temas Disponíveis</h4>
+                    <div id="theme-grid" class="theme-grid">
+                        </div>
+                </div>
+                
+                <div class="theme-preview-card">
+                    <h4>Pré-visualização</h4>
+                    <div id="preview-card" class="preview-card" data-theme="dark">
+                        <div class="preview-sidebar"></div>
+                        <div class="preview-main">
+                            <div class="preview-header"></div>
+                            <div class="preview-content">
+                                <div class="preview-box"></div>
+                                <div class="preview-box short"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="apply-theme-btn" class="btn-primary mt-md">Aplicar Tema</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="general" class="settings-section">
+            <h2>Configurações Gerais</h2>
+            <p class="section-desc">Ajustes de comportamento e preferências.</p>
+            
+            <div class="settings-group"> <div class="form-group-toggle">
+                    <div class="toggle-info">
+                        <label for="auto-save-toggle">Salvar rascunhos automaticamente</label>
+                        <p>Ativa o salvamento automático de textos em mensagens e projetos.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="auto-save-toggle"> <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="form-group-toggle">
+                    <div class="toggle-info">
+                        <label for="language-select">Idioma da Aplicação</label>
+                        <p>Define o idioma principal da interface (Atual: Português).</p>
+                    </div>
+                    <div class="form-group select-group" style="width: 150px;">
+                        <select id="language-select" class="input-field">
+                            <option value="pt-br">Português (BR)</option>
+                            <option value="en-us">English (US)</option>
+                            <option value="es-es">Español</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group-toggle mt-large">
+                    <div class="toggle-info">
+                        <label for="light-mode-toggle">Modo Leve (Desativar Animações)</label>
+                        <p>Remove todas as animações e transições para uma experiência mais fluida e de baixo consumo.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="light-mode-toggle"> <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="account" class="settings-section">
+            <h2>Personalização de Perfil</h2>
+            <p class="section-desc">Gerencie suas informações de perfil e preferências pessoais.</p>
+            
+            <form class="settings-form">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="profile-username">Nome de Usuário</label>
+                        <input type="text" id="profile-username" class="input-field" value="UsuárioExemplo" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-email">E-mail</label>
+                        <input type="email" id="profile-email" class="input-field" value="exemplo@zonnkai.com" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="profile-job-title">Cargo/Função</label>
+                    <input type="text" id="profile-job-title" class="input-field" placeholder="Ex: Desenvolvedor Front-end">
+                </div>
+
+                <div class="form-group">
+                    <label for="profile-bio">Mini-Biografia</label>
+                    <textarea id="profile-bio" class="input-field" rows="3" placeholder="Fale um pouco sobre você, seus projetos ou sua equipe."></textarea>
+                </div>
+                
+                <hr class="separator mt-md mb-md">
+                
+                <h3>Preferências de Interface</h3>
+                
+                <div class="form-row">
+                    <div class="form-group select-group">
+                        <label for="default-view-select">Tela Inicial Padrão</label>
+                        <select id="default-view-select" class="input-field">
+                            <option value="dashboard">Dashboard</option>
+                            <option value="projects">Meus Projetos</option>
+                            <option value="messages">Mensagens</option>
+                        </select>
+                    </div>
+                    <div class="form-group select-group">
+                        <label for="timezone-select">Fuso Horário</label>
+                        <select id="timezone-select" class="input-field">
+                            <option value="utc-3">UTC-3 (São Paulo, Rio)</option>
+                            <option value="utc-0">UTC-0 (Greenwich)</option>
+                            <option value="utc-5">UTC-5 (Nova York)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary mt-md">Salvar Alterações do Perfil</button>
+            </form>
+        </section>
+
+        <section id="notifications" class="settings-section">
+            <h2>Configurações de Notificações</h2>
+            <p class="section-desc">Gerencie como e quando você recebe alertas e atualizações.</p>
+
+            <div class="settings-group">
+                <div class="form-group-toggle">
+                    <div class="toggle-info">
+                        <label for="desktop-notifications-toggle">Notificações Desktop</label>
+                        <p>Permite que o navegador exiba notificações mesmo quando o ZonKai estiver minimizado.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="desktop-notifications-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                
+                <div class="form-group-toggle">
+                    <div class="toggle-info">
+                        <label for="email-notifications-toggle">Notificações por E-mail</label>
+                        <p>Receber resumos diários e alertas de segurança importantes por e-mail.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="email-notifications-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="form-group-toggle">
+                    <div class="toggle-info">
+                        <label for="project-updates-toggle">Alertas de Atualização de Projeto</label>
+                        <p>Receber notificação a cada vez que um membro da equipe atualiza um projeto.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="project-updates-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <section id="security" class="settings-section">
+            <h2>Segurança da Conta</h2>
+            <p class="section-desc">Proteja sua conta com opções de segurança avançadas.</p>
+
+            <div class="settings-group">
+                <div class="form-group-toggle">
+                    <div class="toggle-info">
+                        <label for="password-change-btn">Mudar Senha</label>
+                        <p>Altere sua senha periodicamente para maior segurança.</p>
+                    </div>
+                    <button id="password-change-btn" class="btn-secondary">Alterar</button>
+                </div>
+            </div>
+
+            <div class="settings-group mt-md">
+                <div class="form-group-toggle">
+                    <div class="toggle-info">
+                        <label for="2fa-toggle">Autenticação em Dois Fatores (2FA)</label>
+                        <p>Adiciona uma camada extra de segurança.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="2fa-toggle"> 
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="settings-section">
+            <h2>Sobre Nós</h2>
+            <p class="section-desc">Informações sobre a aplicação e a equipe.</p>
+            <div class="about-hero">
+                <h1>ZonKai</h1>
+                <p>Gestão Empresarial Inteligente</p>
+                <span class="version-tag">v1.0.2 Alpha</span>
+            </div>
+            <div class="about-content">
+                <p>O <strong>ZonKai</strong> é desenvolvido para otimizar processos de micro e médias empresas, unificando gestão de equipe, financeira e de projetos em uma interface fluida.</p>
+                
+                <div class="about-links">
+                    <a href="#">Termos de Uso</a>
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Licenças Open Source</a>
+                </div>
+                
+                <footer class="about-footer">
+                    &copy; 2025 ZonKai Ltda. Todos os direitos reservados.<br>
+                    Feito com 💜 em Niterói, RJ.
+                </footer>
+            </div>
+        </section>
+
+    </main>
+</div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - ZonKai</title>
+    
+    <link rel="stylesheet" href="settings.css"> 
+
+    <style> body, html { background-color: #0d1b2a !important; } </style>
+    <script>
+        (function() {
+            const defaultTheme = 'dark';
+            document.body.setAttribute('data-theme', defaultTheme);
+            document.documentElement.setAttribute('data-theme', defaultTheme);
+        })();
+    </script>
+    
+    <script src="../script.js" defer></script> 
+</head>
+<body data-theme="">
+
+    <div class="background-animation"></div>
+    <div class="overlay"></div>
+
+    <header class="top-bar"> </header>
+    <nav class="sidebar" id="sidebar"> </nav>
+    <footer class="bottom-bar"> </footer>
+    <main class="content">
+        <div class="settings-container glass-effect">
+            <h2>Configurações da Conta</h2>
+            </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('settings-username').value = username;
+                document.getElementById('modal-username-greet').textContent = `Olá, ${username}`;
+                document.querySelector('#profile-btn .material-symbols-outlined').textContent = 'account_circle';
+            }
+        });
+    </script>
+</body>
+</html>

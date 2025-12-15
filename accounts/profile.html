@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Perfil - ZonKai</title>
+
+  <link rel="stylesheet" href="./css/profile.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="./js/profile.js" defer></script>
+</head>
+<body>
+
+  <div class="profile-container">
+    <!-- Cabeçalho -->
+    <div class="profile-header">
+      <div class="avatar-area">
+        <div class="profile-avatar" id="profile-avatar" tabindex="0" role="button" aria-label="Alterar foto de perfil">
+          <span class="material-icons-outlined">account_circle</span>
+        </div>
+        <button class="avatar-edit-btn" title="Alterar foto" aria-label="Alterar foto de perfil">
+          <span class="material-icons-outlined">photo_camera</span>
+        </button>
+        <div class="status-indicator online" title="Online"></div>
+      </div>
+
+      <div class="header-info">
+        <h2 id="profile-username" class="editable-inline" contenteditable="false">
+          Usuário
+          <span class="verified-badge" title="Conta verificada">
+            <span class="material-icons-outlined">verified</span>
+          </span>
+        </h2>
+      </div>
+    </div>
+    
+    <!-- Informações da Conta -->
+    <section class="profile-section">
+      <h3>Informações Pessoais</h3>
+      <div class="profile-info">
+        <div class="info-item">
+          <span class="label">Nome de Usuário</span>
+          <span class="value editable" id="profile-username-edit" contenteditable="true">@usuario</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Email</span>
+          <span class="value editable" id="profile-email" contenteditable="true">usuario@exemplo.com</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Nome Completo</span>
+          <span class="value editable" id="profile-fullname" contenteditable="true">João Silva</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Data de Nascimento</span>
+          <span class="value editable" id="profile-birthdate" contenteditable="true">15/03/1995</span>
+        </div>
+        <div class="info-item bio">
+          <span class="label">Biografia</span>
+          <span class="value editable" id="profile-bio" contenteditable="true">
+            Olá! Sou desenvolvedor full-stack, apaixonado por IA, design e comunidades open-source. Membro ativo da ZonKai desde o lançamento.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Estatísticas -->
+    <section class="profile-section">
+      <h3>Atividade na Plataforma</h3>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number" id="stat-posts">120</span>
+          <span class="stat-label">Publicações</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="stat-followers">2.340</span>
+          <span class="stat-label">Seguidores</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="stat-following">180</span>
+          <span class="stat-label">Seguindo</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" id="stat-likes">8.920</span>
+          <span class="stat-label">Curtidas</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conquistas -->
+    <section class="profile-section">
+      <h3>Conquistas e Badges</h3>
+      <div class="badges">
+        <div class="badge gold" title="Membro Fundador">
+          <span class="material-icons-outlined">military_tech</span>
+        </div>
+        <div class="badge silver" title="Top Contribuidor">
+          <span class="material-icons-outlined">emoji_events</span>
+        </div>
+        <div class="badge bronze" title="Primeira Publicação">
+          <span class="material-icons-outlined">star</span>
+        </div>
+        <div class="badge special" title="Early Adopter">
+          <span class="material-icons-outlined">rocket_launch</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Links Sociais -->
+    <section class="profile-section">
+      <h3>Redes Sociais</h3>
+      <div class="social-links">
+        <div class="social-item">
+          <span class="material-icons-outlined">link</span>
+          <input type="url" class="social-input editable" id="social-website" placeholder="Seu site ou portfólio" />
+        </div>
+        <div class="social-item">
+          <span class="material-icons-outlined">code</span>
+          <input type="url" class="social-input editable" id="social-github" placeholder="github.com/seuuser" />
+        </div>
+        <div class="social-item">
+          <span class="material-icons-outlined">alternate_email</span>
+          <input type="url" class="social-input editable" id="social-twitter" placeholder="x.com/seuuser" />
+        </div>
+        <div class="social-item">
+          <span class="material-icons-outlined">work</span>
+          <input type="url" class="social-input editable" id="social-linkedin" placeholder="linkedin.com/in/seuuser" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Preferências -->
+    <section class="profile-section">
+      <h3>Preferências</h3>
+      <div class="preferences">
+        <label class="switch-label">
+          <input type="checkbox" id="pref-darkmode" checked />
+          <span class="switch"></span>
+          Modo Escuro
+        </label>
+        <label class="switch-label">
+          <input type="checkbox" id="pref-notifications" checked />
+          <span class="switch"></span>
+          Notificações por Email
+        </label>
+        <label class="switch-label">
+          <input type="checkbox" id="pref-public" />
+          <span class="switch"></span>
+          Perfil Público
+        </label>
+      </div>
+    </section>
+
+    <!-- Segurança -->
+    <section class="profile-section">
+      <h3>Segurança</h3>
+      <div class="security-actions">
+        <button class="action-btn">
+          <span class="material-icons-outlined">key</span>
+          Alterar Senha
+        </button>
+        <button class="action-btn">
+          <span class="material-icons-outlined">security</span>
+          Autenticação em 2 Passos
+        </button>
+        <button class="action-btn danger">
+          <span class="material-icons-outlined">logout</span>
+          Sair da Conta
+        </button>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

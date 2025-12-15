@@ -1,0 +1,55 @@
+/* settings.css */
+/* settings/settings.css */
+@import url('global.css'); 
+/* O restante do CSS de settings.css (estilos de formulário e container) deve ser mantido */
+
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: var(--radius-large);
+    padding: 24px;
+}
+
+.settings-container h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+/* Reutiliza os estilos de formulário do global.css */
+/* Mas adiciona estilos para textarea */
+
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--surface-color);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-medium);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    resize: vertical;
+}
+
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 0 3px var(--bloom-color);
+}
+
+.settings-container hr {
+    border: none;
+    height: 1px;
+    background: var(--glass-border);
+    margin: 24px 0;
+}
+
+.settings-container h3 {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 16px;
+}

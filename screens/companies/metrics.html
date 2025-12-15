@@ -1,0 +1,99 @@
+<div class="metrics-container">
+    
+    <header class="dashboard-header">
+        <div class="header-left">
+            
+            <div>
+                <h1>Métricas Corporativas</h1>
+                <p class="subtitle">Visão geral de desempenho financeiro e operacional</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <div class="date-filter glass-effect">
+                <button class="filter-btn active" data-period="7">7 Dias</button>
+                <button class="filter-btn" data-period="30">30 Dias</button>
+                <button class="filter-btn" data-period="90">3 Meses</button>
+            </div>
+            <button class="btn-export glass-effect">
+                <span class="material-symbols-outlined">download</span> Exportar
+            </button>
+        </div>
+    </header>
+
+    <main class="metrics-grid">
+        
+        <div class="kpi-card glass-effect">
+            <div class="kpi-header">
+                <span class="material-symbols-outlined icon-bg">payments</span>
+                Receita Total
+            </div>
+            <div class="kpi-value" id="kpi-revenue">0</div>
+            <div class="kpi-trend positive">
+                <span class="material-symbols-outlined">trending_up</span>
+                12.5% <small>vs semana passada</small>
+            </div>
+        </div>
+        <div class="kpi-card glass-effect">
+            <div class="kpi-header">
+                <span class="material-symbols-outlined icon-bg">monetization_on</span>
+                Lucro Líquido
+            </div>
+            <div class="kpi-value" id="kpi-profit">0</div>
+            <div class="kpi-trend positive">
+                <span class="material-symbols-outlined">trending_up</span>
+                8.2% <small>vs semana passada</small>
+            </div>
+        </div>
+        <div class="kpi-card glass-effect">
+            <div class="kpi-header">
+                <span class="material-symbols-outlined icon-bg">group</span>
+                Clientes Ativos
+            </div>
+            <div class="kpi-value" id="kpi-clients">0</div>
+            <div class="kpi-trend neutral">
+                0% <small>vs semana passada</small>
+            </div>
+        </div>
+        <div class="kpi-card glass-effect">
+            <div class="kpi-header">
+                <span class="material-symbols-outlined icon-bg">receipt_long</span>
+                Ticket Médio
+            </div>
+            <div class="kpi-value" id="kpi-ticket">0</div>
+            <div class="kpi-trend negative">
+                <span class="material-symbols-outlined">trending_down</span>
+                -3.4% <small>vs semana passada</small>
+            </div>
+        </div>
+
+        <div class="chart-container main-chart glass-effect">
+            <h3>Fluxo de Caixa (Receita vs Despesas)</h3>
+            <div id="revenueChart"></div>
+        </div>
+
+        <div class="chart-container side-chart glass-effect">
+            <h3>Receita por Categoria</h3>
+            <div id="categoryChart"></div>
+        </div>
+
+        <div class="transactions-container glass-effect">
+            <div class="section-header">
+                <h3>Últimas Operações</h3>
+                <a href="#" class="view-all">Ver tudo</a>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descrição</th>
+                        <th>Data</th>
+                        <th>Status</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody id="transaction-body">
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>

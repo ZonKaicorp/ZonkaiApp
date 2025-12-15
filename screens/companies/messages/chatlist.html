@@ -1,0 +1,123 @@
+<!-- Módulo de Mensagens Estilo Telegram -->
+<div class="telegram-shell" id="telegram-app">
+
+  <!-- LADO ESQUERDO: Lista de Chats -->
+  <div class="tg-sidebar">
+      <div class="sidebar-header">
+          <div class="search-bar">
+              <span class="material-symbols-outlined" style="font-size: 1.2rem;">search</span>
+              <input type="text" placeholder="Pesquisar">
+          </div>
+      </div>
+
+      <div class="chat-list" id="chat-list">
+          
+          <!-- Item 1: Lumie (Corrigido com ID que o JS exige) -->
+          <div class="chat-item active" id="chat-lumie">
+              <div class="avatar lumie">
+                  <span class="material-symbols-outlined">smart_toy</span>
+              </div>
+              <div class="chat-info">
+                  <div class="chat-top-row">
+                      <span class="chat-name">Lumie (IA)</span>
+                      <span class="chat-time">14:20</span>
+                  </div>
+                  <div class="chat-bottom-row">
+                      <span class="chat-last-msg" id="preview-lumie">Como posso ajudar na gestão?</span>
+                      <span class="badge show" id="badge-lumie">1</span>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Item 2 de exemplo -->
+          <div class="chat-item">
+              <div class="avatar" style="background: linear-gradient(135deg, #FF9966, #FF5E62);">J</div>
+              <div class="chat-info">
+                  <div class="chat-top-row">
+                      <span class="chat-name">João da Silva</span>
+                      <span class="chat-time">10:32</span>
+                  </div>
+                  <div class="chat-bottom-row">
+                      <span class="chat-last-msg">Enviei o relatório financeiro.</span>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Item 3 de exemplo -->
+          <div class="chat-item">
+              <div class="avatar" style="background: linear-gradient(135deg, #56ab2f, #a8e063);">M</div>
+              <div class="chat-info">
+                  <div class="chat-top-row">
+                      <span class="chat-name">Maria Oliveira</span>
+                      <span class="chat-time">Ontem</span>
+                  </div>
+                  <div class="chat-bottom-row">
+                      <span class="chat-last-msg">Reunião confirmada!</span>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+
+  <!-- LADO DIREITO: Janela da Conversa -->
+  <div class="chat-window" id="chat-window">
+
+      <!-- HEADER corrigido com ID que o JS exige -->
+      <div class="chat-header">
+          <button class="back-btn" id="back-to-chat-list">
+              <span class="material-symbols-outlined">arrow_back</span>
+          </button>
+
+          <div class="avatar lumie" style="width: 40px; height: 40px;">
+              <span class="material-symbols-outlined">smart_toy</span>
+          </div>
+
+          <div class="header-info">
+              <span class="header-name">Lumie (IA)</span>
+              <span class="header-status">online</span>
+          </div>
+
+          <div class="header-actions">
+              <button class="action-btn"><span class="material-symbols-outlined">search</span></button>
+              <button class="action-btn"><span class="material-symbols-outlined">more_vert</span></button>
+          </div>
+      </div>
+
+      <!-- ÁREA DE MENSAGENS (Corrigido para ID que o JS exige) -->
+      <div class="messages-container" id="chat-history">
+          <div class="date-divider">Hoje</div>
+
+          <div class="message received">
+              Olá! Sou a Lumie. Como posso ajudar na gestão da sua empresa hoje?
+              <div class="msg-meta">14:02</div>
+          </div>
+
+          <div class="typing-indicator" id="typing-indicator">
+              <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+      </div>
+
+      <!-- INPUT (IDs corrigidos) -->
+      <div class="input-area">
+
+          <button class="attach-btn">
+              <span class="material-symbols-outlined">attach_file</span>
+          </button>
+
+          <!-- Corrigido: ID agora é o que o JS procura -->
+          <input type="text"
+                 class="message-input"
+                 id="chat-message-input"
+                 placeholder="Escreva uma mensagem..."
+                 autocomplete="off">
+
+          <button class="mic-btn" id="send-btn">
+              <span class="material-symbols-outlined" id="send-icon">mic</span>
+          </button>
+
+      </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,247 @@
+/* screens/team/css/team.css */
+
+/* Container Principal */
+.team-dashboard {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    position: relative;
+    z-index: 10; /* Garante que fique acima de animações de fundo */
+}
+
+/* --- CABEÇALHO (Blindado) --- */
+.team-header-section {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    
+    /* Força total de visibilidade */
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    animation: none !important; /* Cancela animações globais */
+    position: relative;
+    z-index: 20;
+}
+
+.header-content h1 {
+    font-size: 1.8rem;
+    color: var(--text-primary) !important; /* Força a cor do tema */
+    margin-bottom: 5px;
+    opacity: 1 !important;
+    text-shadow: none; /* Remove efeitos estranhos se houver */
+}
+
+.header-content p {
+    color: var(--text-secondary) !important;
+    font-size: 0.95rem;
+    opacity: 1 !important;
+}
+
+.btn-new-member {
+    background: var(--highlight-color);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    /* Garante que o botão não herde opacidade 0 */
+    opacity: 1 !important; 
+}
+
+.btn-new-member:hover {
+    transform: translateY(-2px) !important; /* Força o hover funcionar */
+    box-shadow: 0 4px 15px var(--bloom-color);
+}
+
+/* --- BARRA DE FERRAMENTAS --- */
+.team-toolbar {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 30px;
+    border-radius: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    opacity: 1 !important; /* Segurança extra */
+}
+
+.glass-panel {
+    background: var(--surface-color);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.search-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 10px 14px;
+    border: 1px solid var(--glass-border);
+}
+
+.search-wrapper input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    margin-left: 10px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+}
+
+.filter-wrapper select {
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: var(--bg-color);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    cursor: pointer;
+    outline: none;
+}
+
+/* --- GRID DE CARDS --- */
+.team-grid-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+/* Card Individual */
+.member-card {
+    background: var(--surface-color);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--highlight-color);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Avatar e Status */
+.avatar-box {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.avatar-circle {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--highlight-color), #80bdff);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    border: 4px solid var(--surface-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.status-indicator {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid var(--surface-color);
+}
+
+.st-online { background-color: #00e676; box-shadow: 0 0 8px rgba(0,230,118,0.6); }
+.st-meeting { background-color: #ffb300; }
+.st-offline { background-color: var(--text-secondary); }
+
+/* Infos do Membro */
+.member-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.member-role {
+    font-size: 0.9rem;
+    color: var(--highlight-color);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.info-block {
+    width: 100%;
+    background: rgba(0,0,0,0.03);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.info-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+}
+
+.info-line:last-child { margin-bottom: 0; }
+.info-line span { font-weight: 600; color: var(--text-primary); }
+
+/* Botões de Ação */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.btn-small {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+.btn-small:hover {
+    background: var(--highlight-color);
+    color: #fff;
+    border-color: var(--highlight-color);
+}
+
+/* Mensagem de Sem Resultados */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    color: var(--text-secondary);
+    background: var(--surface-color);
+    border: 1px dashed var(--glass-border);
+    border-radius: 12px;
+}

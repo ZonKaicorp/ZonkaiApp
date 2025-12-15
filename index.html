@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZonKai - Gestão Empresarial</title>
+   
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="screens/companies/css/home.css">
+    <link rel="stylesheet" href="accounts/css/profile.css">
+    <link rel="stylesheet" href="screens/companies/messages/css/messages.css">
+    <link rel="stylesheet" href="screens/companies/css/metrics.css">
+    <link rel="stylesheet" href="screens/companies/css/team.css">
+    <link rel="stylesheet" href="screens/companies/css/projects.css">
+    <link rel="stylesheet" href="screens/settings/css/settings.css">
+    
+    <script src="script.js" defer></script>
+</head>
+<body data-theme="dark">
+    <div class="background-animation"></div>
+    <div class="overlay"></div>
+    <header class="top-bar">
+        <button class="icon-btn" id="menu-toggle" aria-label="Abrir menu">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+       
+        <h1 class="logo">ＺｏｎＫａｉ</h1>
+        
+       
+        <div class="top-bar-actions">
+            <button class="icon-btn" id="theme-toggle" aria-label="Mudar tema">
+                <span class="material-symbols-outlined">light_mode</span>
+            </button>
+            <button class="icon-btn profile-btn" id="profile-btn" aria-label="Perfil do usuário">
+                <span class="material-symbols-outlined">person</span>
+            </button>
+        </div>
+    </header>
+    <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <h2>Menu</h2>
+    </div>
+
+    <ul class="sidebar-menu">
+        <li><a href="#" id="sidebar-dashboard"><span class="material-symbols-outlined">dashboard</span> <span>Dashboard</span></a></li>
+        <li><a href="#" id="sidebar-reports"><span class="material-symbols-outlined">bar_chart</span> <span>Metricas</span></a></li>
+        <li><a href="#" id="sidebar-team"><span class="material-symbols-outlined">groups</span> <span>Equipe</span></a></li>
+        <li><a href="#" id="sidebar-projects"><span class="material-symbols-outlined">folder_managed</span> <span>Projetos</span></a></li>
+        <li><a href="#" id="sidebar-messages"><span class="material-symbols-outlined">mail</span> <span>Mensagens</span></a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+        <div class="sidebar-knowledge">
+            <h3 class="knowledge-title">CONHECIMENTO</h3>
+            <p id="knowledge-quote">O conhecimento é o único bem que, partilhado, se multiplica. - Sócrates</p>
+        </div>
+
+        <div class="sidebar-support">
+            <a href="#" id="support-us-btn">
+                <span class="material-symbols-outlined">volunteer_activism</span>
+                <span>Apoie-nos</span>
+            </a>
+        </div>
+
+        <div class="sidebar-settings">
+            <a href="#" id="sidebar-settings-btn">
+                <span class="material-symbols-outlined">settings</span>
+                <span>Configurações</span>
+            </a>
+        </div>
+
+        <div class="sidebar-socials">
+            <a href="https://instagram.com" target="_blank" aria-label="Nosso Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                </svg>
+            </a>
+            <a href="https://x.com" target="_blank" aria-label="Nosso X (Twitter)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                </svg>
+            </a>
+            <a href="https://github.com" target="_blank" aria-label="Nosso GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.09.682-.218.682-.484 0-.238-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.157-1.11-1.465-1.11-1.465-.908-.62.069-.608.069-.608 1.004.07 1.532 1.03 1.532 1.03.89 1.526 2.338 1.085 2.91.83.091-.645.348-1.085.635-1.334-2.22-.25-4.555-1.11-4.555-4.943 0-1.09.39-1.984 1.03-2.682-.103-.252-.447-1.27.098-2.64 0 0 .84-.27 2.75 1.02A9.58 9.58 0 0 1 12 6.84c.85.004 1.705.115 2.504.336 1.91-1.29 2.747-1.02 2.747-1.02.547 1.37.202 2.388.1 2.64.64.7 1.027 1.59 1.027 2.682 0 3.84-2.338 4.69-4.566 4.935.359.307.678.915.678 1.846 0 1.33-.012 2.404-.012 2.73 0 .268.18.578.688.48A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10Z" clip-rule="evenodd" />
+                </svg>
+            </a>
+          </div>
+    </div> </nav>
+    <main class="content" id="main-content">
+        <h2>Dashboard</h2>
+        <p>Bem-vindo ao seu painel de gestão ZonKai. Faça login para continuar.</p>
+        <div class="placeholder-card"></div>
+        <div class="placeholder-card"></div>
+        <div class="placeholder-card"></div>
+    </main>
+    <div class="modal profile-modal" id="profile-modal">
+    <div class="modal-content">
+        <div class="profile-modal-pic">
+            <span class="material-symbols-outlined">person</span>
+        </div>
+        <strong id="modal-username-greet">Olá, Usuário!</strong>
+
+        <a href="#" id="go-to-profile" class="btn-profile">Ver perfil completo</a>
+
+        <a href="#" id="logout-btn">Sair</a>
+       </div>
+    </div>
+    <div class="modal login-modal" id="login-modal">
+        <div class="modal-content">
+            <h3>Login</h3>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">Nome de Usuário</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" required>
+                </div>
+                <button type="submit" class="btn-primary">Entrar</button>
+                <p class="form-link">Não tem conta? <a href="#" id="go-to-register">Cadastre-se</a></p>
+            </form>
+        </div>
+    </div>
+    <div class="modal register-modal" id="register-modal">
+        <div class="modal-content">
+            <h3>Cadastro</h3>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="reg-username">Nome de Usuário</label>
+                    <input type="text" id="reg-username" placeholder="Mais de 4 caracteres (sem . ou ,)" required>
+                    <span class="validation-message" id="username-validation-msg"></span>
+                </div>
+               
+                <div class="form-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-senha">Senha</label>
+                    <input type="password" id="reg-senha" required>
+                </div>
+                <div class="form-group select-group">
+                    <label for="tipo-conta">Tipo de Conta</label>
+                    <select id="tipo-conta" name="tipo-conta">
+                        <option value="trabalhador" selected>Trabalhador</option>
+                        <option value="gestor">Gestor</option>
+                    </select>
+                </div>
+                <div class="conditional-fields" id="gestor-fields">
+                    <div class="form-group select-group">
+                        <label for="tamanho-empresa">Tamanho da Empresa</label>
+                        <select id="tamanho-empresa" name="tamanho-empresa">
+                            <option value="micro">Micro Empresa</option>
+                            <option value="media">Empresa Média</option>
+                            <option value="grande">Grande Empresa</option>
+                        </select>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="area-empresa">Área da Empresa</label>
+                        <input type="text" id="area-empresa" name="area-empresa" placeholder="Ex: TI, Finanças, Marketing">
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Cadastrar</button>
+                <p class="form-link">Já tem conta? <a href="#" id="go-to-login">Faça Login</a></p>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="./screens/companies/messages/messages.js"></script>
+</body>
+</html>
