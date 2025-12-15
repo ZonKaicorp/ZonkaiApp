@@ -1279,7 +1279,7 @@ body {
 }
 
 
-/* ====== 13. MODO LEVE (NOVO) ====== */
+/* ====== 13. MODO LEVE ====== */
 /* Esta classe desativa TODAS as animações e transições no corpo da aplicação */
 body.no-animation,
 body.no-animation *,
@@ -1290,5 +1290,3 @@ body.no-animation .background-animation {
     animation: none !important; 
     background: var(--bg-color) !important; /* Fundo estático */
 }
-
-/* ... o restante dos estilos (top-bar, sidebar, botões, etc.) ... */
