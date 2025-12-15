@@ -121,9 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Passa a initFunc (window.initTeamModule) como callback
                 loadScript(scriptPath, initFunc); 
             } else if (initFunc) {
-                // Se não houver script, mas houver função de inicialização, chame-a
-                // Isso cobre casos onde o JS já está carregado via <script> tag no index.html.
-                // Usamos um pequeno delay para garantir que a injeção do DOM terminou.
                 setTimeout(initFunc, 50); 
             }
 
