@@ -95,9 +95,9 @@ const mockVideos = [
         title: "10 dicas INFALÍVEIS para a GESTÃO FINANCEIRA de um pequeno negócio!",
         duration: "02:13:27",
         author: "Programa Alavancar",
-        thumbnail: "https://img.youtube.com/vi/cwWusUqgtVng-zLW/maxresdefault.jpg",
+        thumbnail: "https://img.youtube.com/vi/nOaNo4ZlCvVo0uyr/maxresdefault.jpg",
         views: "20k visualizações",
-        url: "https://youtu.be/69l-iaw_Vz0?si=cwWusUqgtVng-zLW"
+        url: "https://youtu.be/LOYlBeN40u4?si=nOaNo4ZlCvVo0uyr"
     },
     {
         title: "O que é Gestão Empresarial",
