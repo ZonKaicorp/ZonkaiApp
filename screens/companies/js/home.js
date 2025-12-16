@@ -81,7 +81,7 @@ const mockNews = [
     }
 ];
 
-// === 1.1 VÍDEOS REAIS ===
+// === 1.1 VÍDEOS ===
 const mockVideos = [
     {
         title: "Gestão Empresarial - CURSO COMPLETO",
@@ -92,12 +92,12 @@ const mockVideos = [
         url: "https://youtu.be/Yp1rht8qHsk"
     },
     {
-        title: "Módulo 1 - Pesquisa de Mercado",
+        title: "10 dicas INFALÍVEIS para a GESTÃO FINANCEIRA de um pequeno negócio!",
         duration: "02:13:27",
         author: "Programa Alavancar",
-        thumbnail: "https://img.youtube.com/vi/KYIExiggeoA/maxresdefault.jpg",
+        thumbnail: "https://img.youtube.com/vi/cwWusUqgtVng-zLW/maxresdefault.jpg",
         views: "20k visualizações",
-        url: "https://youtu.be/KYIExiggeoA"
+        url: "https://youtu.be/69l-iaw_Vz0?si=cwWusUqgtVng-zLW"
     },
     {
         title: "O que é Gestão Empresarial",
